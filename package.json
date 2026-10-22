@@ -1,0 +1,13 @@
+{
+  "name": "manya-agarwal-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive Portfolio for Manya Agarwal - UI/UX Designer, Data Analyst, Business Development",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["portfolio", "uiux", "design", "data-analyst", "business-development", "interactive"],
+  "author": "Manya Agarwal",
+  "license": "MIT"
+}

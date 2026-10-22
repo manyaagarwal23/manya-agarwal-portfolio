@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Manya Agarwal — UI/UX Designer • Data Analyst • Business Development</title>
+  <meta name="description" content="Turning little thoughts into thoughtful experiences. Portfolio of Manya Agarwal — blending human-centered design, data analytics, and business strategy.">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Manya Agarwal — Portfolio">
+  <meta property="og:description" content="Turning little thoughts into thoughtful experiences. UI/UX Designer • Data Analyst • Business Development">
+  <meta property="og:image" content="assets/home/village_day.jpg">
+  <meta name="theme-color" content="#FFF8EC">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Gaegu:wght@400;700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="mascot.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Bar: Day/Night Mode Toggle in Small Right Up Corner -->
+  <header class="top-bar" id="topBar">
+    <div class="header-spacer"></div>
+    <div class="theme-switch-container">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle Day and Night Mode" title="Toggle Day or Night theme">
+        <div class="toggle-track">
+          <span class="toggle-icon sun-icon" aria-hidden="true">☀️</span>
+          <span class="toggle-icon moon-icon" aria-hidden="true">🌙</span>
+          <div class="toggle-thumb" id="toggleThumb"></div>
+        </div>
+        <span class="theme-label" id="themeLabel">Day</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Content -->
+  <main>
+    <!-- Section 1: Home (Interactive Village Theme Hero Section) -->
+    <section class="village-hero-section" id="home" aria-label="Home — Introduction and Highlights">
+      <!-- Full-Screen Dual-Image Village Artwork Canvas (Day & Night Crossfade) -->
+      <div class="village-canvas" aria-hidden="true">
+        <img class="village-plate village-plate-day" src="assets/home/village_day.jpg" alt="Scenic village landscape by day" fetchpriority="high">
+        <img class="village-plate village-plate-night" src="assets/home/village_night.jpg" alt="Scenic village landscape illuminated at night" fetchpriority="high">
+        <div class="village-ambient-scrim"></div>
+      </div>
+
+      <!-- Main Centred Hero Content (Clean, Spacious Editorial Layout) -->
+      <div class="village-hero-center" id="heroContent">
+        <!-- Introductory Line -->
+        <p class="village-intro">Hi, I’m</p>
+
+        <!-- Main Heading: Name as Largest Element -->
+        <h1 class="village-name">Manya Agarwal</h1>
+
+        <!-- Tagline -->
+        <p class="village-tagline">“A curious mind, a creative soul and a problem-solver at heart.”</p>
+
+        <!-- Role Bar -->
+        <div class="village-role-bar" aria-label="Professional Roles">
+          <span class="role-pill-item">UI/UX Designer</span>
+          <span class="role-dot" aria-hidden="true">·</span>
+          <span class="role-pill-item">Data Analyst</span>
+          <span class="role-dot" aria-hidden="true">·</span>
+          <span class="role-pill-item">AI/ML Explorer</span>
+          <span class="role-dot" aria-hidden="true">·</span>
+          <span class="role-pill-item">Business Development Enthusiast</span>
+        </div>
+
+        <!-- Supporting Line -->
+        <p class="village-supporting">
+          Turning ideas into meaningful experiences — through design, data, technology and real human connections.
+        </p>
+      </div>
+
+      <!-- Bottom-Left "Explore My Story" Scroll Indicator -->
+      <a href="#about" class="village-scroll-corner" id="villageScrollCorner" aria-label="Scroll down to Explore my story">
+        <span class="scroll-mouse" aria-hidden="true">
+          <span class="scroll-wheel"></span>
+        </span>
+        <div class="scroll-label-group">
+          <span class="scroll-text">Explore my story</span>
+          <svg class="scroll-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Three Discreet Interactive Location Pins (Popups appear ONLY when clicked) -->
+      
+      <!-- Pin 1: Bharat Electronics Limited (BEL) -->
+      <div class="village-pin-spot pin-pos-bel" id="pinSpotBel" data-pin="bel">
+        <button class="village-pin-btn" id="pinBtnBel" aria-expanded="false" aria-controls="pinCardBel" aria-label="View Bharat Electronics Limited (BEL) details" title="Click to view BEL details">
+          <span class="pin-beacon" aria-hidden="true"></span>
+          <span class="pin-core-disc">
+            <svg class="pin-ico" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </span>
+          <span class="pin-chip-label">BEL · Prev. Intern</span>
+        </button>
+
+        <!-- Pop-up Frosted Card (Hidden by default, opens on click) -->
+        <div class="village-pin-popup" id="pinCardBel" role="dialog" aria-modal="false" aria-labelledby="pinTitleBel" hidden>
+          <button class="pin-popup-close" aria-label="Close card" data-close="bel">×</button>
+          <div class="pin-popup-badge badge-bel">Previous Internship</div>
+          <h3 class="pin-popup-title" id="pinTitleBel">Bharat Electronics Limited (BEL)</h3>
+          <p class="pin-popup-meta">Machine Learning Intern | June – July 2025</p>
+          <p class="pin-popup-desc">
+            Worked on network intrusion and anomaly detection using the UNSW-NB15 dataset and contributed to designing UI screens for the BEL website.
+          </p>
+          <a href="#work" class="pin-popup-link" data-chapter="0">View in Work Experience →</a>
+        </div>
+      </div>
+
+      <!-- Pin 2: BML Munjal University -->
+      <div class="village-pin-spot pin-pos-bml" id="pinSpotBml" data-pin="bml">
+        <button class="village-pin-btn" id="pinBtnBml" aria-expanded="false" aria-controls="pinCardBml" aria-label="View BML Munjal University details" title="Click to view College details">
+          <span class="pin-beacon" aria-hidden="true"></span>
+          <span class="pin-core-disc">
+            <svg class="pin-ico" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </span>
+          <span class="pin-chip-label">BML Munjal Univ</span>
+        </button>
+
+        <!-- Pop-up Frosted Card (Hidden by default, opens on click) -->
+        <div class="village-pin-popup" id="pinCardBml" role="dialog" aria-modal="false" aria-labelledby="pinTitleBml" hidden>
+          <button class="pin-popup-close" aria-label="Close card" data-close="bml">×</button>
+          <div class="pin-popup-badge badge-bml">My College</div>
+          <h3 class="pin-popup-title" id="pinTitleBml">BML Munjal University</h3>
+          <p class="pin-popup-meta">B.Tech in Computer Science &amp; Engineering | 2023 – 2027</p>
+          <p class="pin-popup-desc">
+            Currently in my 4th year, specializing in <strong>Artificial Intelligence and Data Science</strong>, with interests in machine learning, data analytics, and intelligent technology solutions.
+          </p>
+          <a href="#about" class="pin-popup-link">Explore in About Me →</a>
+        </div>
+      </div>
+
+      <!-- Pin 3: Azisly.ai -->
+      <div class="village-pin-spot pin-pos-azisly" id="pinSpotAzisly" data-pin="azisly">
+        <button class="village-pin-btn" id="pinBtnAzisly" aria-expanded="false" aria-controls="pinCardAzisly" aria-label="View Azisly.ai details" title="Click to view Azisly.ai details">
+          <span class="pin-beacon" aria-hidden="true"></span>
+          <span class="pin-core-disc">
+            <svg class="pin-ico" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </span>
+          <span class="pin-chip-label">Azisly.ai · Current</span>
+        </button>
+
+        <!-- Pop-up Frosted Card (Hidden by default, opens on click) -->
+        <div class="village-pin-popup" id="pinCardAzisly" role="dialog" aria-modal="false" aria-labelledby="pinTitleAzisly" hidden>
+          <button class="pin-popup-close" aria-label="Close card" data-close="azisly">×</button>
+          <div class="pin-popup-badge badge-azisly">Current Internship</div>
+          <h3 class="pin-popup-title" id="pinTitleAzisly">Azisly.ai</h3>
+          <p class="pin-popup-meta">Business Development Intern | October 2026 – Present</p>
+          <p class="pin-popup-desc">
+            Currently exploring B2B business development, including lead research, prospecting, understanding customer needs, and client communication.
+          </p>
+          <a href="#work" class="pin-popup-link" data-chapter="2">View in Work Experience →</a>
+        </div>
+      </div>
+
+      <!-- Click-outside backdrop overlay for open pin popup -->
+      <div class="village-popup-scrim" id="villagePopupScrim" aria-hidden="true" hidden></div>
+    </section>
+
+    <!-- Section 2: About Me (Interactive Illustrated Mascot & 3D Glass Atmosphere) -->
+    <section class="about-me-section" id="about">
+      <div class="about-ambient-backdrop" aria-hidden="true">
+        <div class="ambient-swirl swirl-1"></div>
+        <div class="ambient-swirl swirl-2"></div>
+      </div>
+
+      <div class="about-main-container">
+        <!-- 3-Column Desktop Grid Layout -->
+        <div class="about-grid">
+          
+          <!-- Column 1: Left Bio & Things I Love -->
+          <div class="about-col about-col-left">
+            <div class="about-eyebrow-wrap">
+              <span class="about-eyebrow">ABOUT ME</span>
+              <span class="about-eyebrow-line"></span>
+            </div>
+
+            <h2 class="about-hero-heading">
+              <span class="heading-lead">Hi, I'm</span>
+              <span class="heading-name">Manya</span>
+              <span class="heading-name">Agarwal</span>
+            </h2>
+
+            <div class="about-role-pill">UI/UX Designer & Developer</div>
+
+            <p class="about-bio-text">
+              A curious mind, a creative soul and a problem-solver who loves turning ideas into <strong>meaningful digital experiences</strong>. I enjoy exploring how design, data and technology can make everyday life a little more thoughtful and impactful.
+            </p>
+
+            <!-- Things I Love -->
+            <div class="things-love-block">
+              <div class="about-eyebrow-wrap">
+                <span class="about-eyebrow">THINGS I LOVE</span>
+                <span class="about-eyebrow-line"></span>
+              </div>
+
+              <div class="things-love-grid">
+                <div class="love-pill" data-reaction="wink">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">💻</span>
+                  </div>
+                  <span class="love-label">Designing Pretty Things</span>
+                </div>
+
+                <div class="love-pill" data-reaction="happy">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">☕</span>
+                  </div>
+                  <span class="love-label">Good Food</span>
+                </div>
+
+                <div class="love-pill" data-reaction="wink">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">🐾</span>
+                  </div>
+                  <span class="love-label">Animals & Pets</span>
+                </div>
+
+                <div class="love-pill" data-reaction="happy">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">🎵</span>
+                  </div>
+                  <span class="love-label">Music Always</span>
+                </div>
+
+                <div class="love-pill" data-reaction="up">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">✈️</span>
+                  </div>
+                  <span class="love-label">Travelling to New Places</span>
+                </div>
+
+                <div class="love-pill" data-reaction="happy">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">🎬</span>
+                  </div>
+                  <span class="love-label">Movies & Series</span>
+                </div>
+
+                <div class="love-pill" data-reaction="up">
+                  <div class="love-icon-bubble">
+                    <span class="love-emoji">📖</span>
+                  </div>
+                  <span class="love-label">Learning New Things</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Center Interactive Cursor-Following Mascot Stage -->
+          <div class="about-col about-col-center">
+            <div class="mascot-stage" id="mascot" data-base="assets/about/mascot/">
+              <div class="mascot-ring"></div>
+              <div class="mascot-float">
+                <div class="mascot-tilt"></div>
+              </div>
+              <div class="mascot-shadow"></div>
+            </div>
+          </div>
+
+          <!-- Column 3: Right Areas I'm Exploring & What Drives Me? -->
+          <div class="about-col about-col-right">
+            <!-- Areas I'm Exploring -->
+            <div class="areas-exploring-block">
+              <div class="about-eyebrow-wrap">
+                <span class="about-eyebrow">AREAS I'M EXPLORING</span>
+                <span class="about-eyebrow-line"></span>
+              </div>
+
+              <!-- 2x2 Glass Cards Grid -->
+              <div class="areas-cards-grid">
+                <!-- 1. Data Analytics -->
+                <div class="explore-glass-card card-analytics">
+                  <div class="card-glass-glow"></div>
+                  <div class="card-icon-pill icon-blue">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                      <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zM16.2 13h2.8v6h-2.8z"/>
+                    </svg>
+                  </div>
+                  <h4 class="card-title">Data Analytics</h4>
+                  <p class="card-desc">Turning data into meaningful insights and stories.</p>
+                </div>
+
+                <!-- 2. AI / ML -->
+                <div class="explore-glass-card card-aiml">
+                  <div class="card-glass-glow"></div>
+                  <div class="card-icon-pill icon-purple">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                      <path d="M12 3a9 9 0 0 0-9 9c0 3.87 2.45 7.17 5.89 8.41.45.08.61-.2.61-.43v-1.52c-2.49.54-3.01-1.2-3.01-1.2-.41-1.04-.99-1.32-.99-1.32-.81-.55.06-.54.06-.54.9.06 1.37.92 1.37.92.8 1.37 2.09.98 2.6.75.08-.58.31-.98.57-1.2-1.99-.23-4.08-1-4.08-4.43 0-.98.35-1.78.92-2.41-.09-.23-.4-1.14.09-2.37 0 0 .75-.24 2.46.92.71-.2 1.48-.3 2.24-.3.76 0 1.53.1 2.24.3 1.71-1.16 2.46-.92 2.46-.92.49 1.23.18 2.14.09 2.37.58.63.92 1.43.92 2.41 0 3.44-2.1 4.2-4.1 4.42.32.28.61.83.61 1.67v2.48c0 .24.16.52.62.43A9.01 9.01 0 0 0 21 12a9 9 0 0 0-9-9z"/>
+                    </svg>
+                  </div>
+                  <h4 class="card-title">AI / ML</h4>
+                  <p class="card-desc">Exploring models and real-world applications.</p>
+                </div>
+
+                <!-- 3. UI/UX Design -->
+                <div class="explore-glass-card card-design">
+                  <div class="card-glass-glow"></div>
+                  <div class="card-icon-pill icon-coral">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                    </svg>
+                  </div>
+                  <h4 class="card-title">UI/UX Design</h4>
+                  <p class="card-desc">Designing simple, beautiful and user-centric experiences.</p>
+                </div>
+
+                <!-- 4. Business Development -->
+                <div class="explore-glass-card card-bizdev">
+                  <div class="card-glass-glow"></div>
+                  <div class="card-icon-pill icon-teal">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                  </div>
+                  <h4 class="card-title">Business Development</h4>
+                  <p class="card-desc">Understanding people, opportunities and real-world impact.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- What Drives Me? Large Glass Card -->
+            <div class="drives-me-glass-card">
+              <div class="card-glass-glow"></div>
+              <div class="drives-head-wrap">
+                <span class="drives-tag">WHAT DRIVES ME?</span>
+                <span class="drives-line"></span>
+              </div>
+              <p class="drives-body">
+                I'm passionate about <strong>understanding people</strong>, <strong>solving real problems</strong> and building things that create a <strong>positive impact</strong>. I love learning, exploring new tools and working at the intersection of design, data, technology and business.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Work (Edge-to-Edge Top-Down Illustrated Workspace) -->
+    <section class="work-section" id="work">
+      <!-- Full-Screen Edge-to-Edge Desk Canvas Plates -->
+      <div class="desk-canvas" aria-hidden="true">
+        <img src="assets/work/desk_surface_day.jpg" alt="Illustrated Creative Desk Surface" class="desk-plate desk-plate-day">
+        <img src="assets/work/desk_surface_night.jpg" alt="Illustrated Creative Desk Surface Night" class="desk-plate desk-plate-night">
+        <!-- Candle Ambient Light Glow (Visibly Lit in Night Mode) -->
+        <div class="candle-ambient-glow" aria-hidden="true"></div>
+      </div>
+
+      <!-- Integrated Workspace Desk Heading -->
+      <div class="desk-header">
+        <span class="desk-eyebrow">MY JOURNEY SO FAR</span>
+        <h2 class="desk-title">“Every experience writes a new chapter.”</h2>
+      </div>
+
+      <!-- The 3D Open Book Container (Positioned Centrally over Desk) -->
+      <div class="book-stage-wrapper">
+        <!-- Chapter Bookmark Ribbon -->
+        <div class="book-ribbon" aria-hidden="true"></div>
+
+        <!-- Quick Chapter Index Tabs on Top Edge -->
+        <div class="book-chapter-tabs" id="bookChapterTabs" role="tablist" aria-label="Book Chapters">
+          <button class="book-tab active" data-chapter="0" role="tab" aria-selected="true">Chapter 01</button>
+          <button class="book-tab" data-chapter="1" role="tab" aria-selected="false">Chapter 02</button>
+          <button class="book-tab" data-chapter="2" role="tab" aria-selected="false">Chapter 03</button>
+        </div>
+
+        <!-- Realistic 3D Open Book Spread -->
+        <div class="open-book" id="openBook">
+          <!-- Spine Crease Shadow Overlay -->
+          <div class="book-gutter-crease" aria-hidden="true"></div>
+
+            <!-- CHAPTER 01: Bharat Electronics Limited (BEL) -->
+            <div class="book-spread active" data-index="0" id="chapter-0">
+              <!-- Left Page -->
+              <div class="book-page page-left">
+                <div class="page-header">
+                  <span class="chapter-numeral">CHAPTER 01</span>
+                  <span class="chapter-date">June 2025 – July 2025</span>
+                </div>
+
+                <div class="chapter-title-group">
+                  <div class="company-logo-badge badge-blue">
+                    <span class="badge-icon">🛡️</span>
+                  </div>
+                  <div>
+                    <h3 class="experience-company">Bharat Electronics Limited (BEL)</h3>
+                    <p class="experience-role">Machine Learning Intern</p>
+                  </div>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">WHAT I WORKED ON</h4>
+                  <p class="page-narrative">
+                    Worked on a machine learning-based network intrusion and anomaly detection project using the UNSW-NB15 dataset. Explored network traffic data and supported the development of ML approaches for identifying potentially malicious network activity. I also contributed to designing UI screens for the BEL website.
+                  </p>
+                </div>
+
+                <!-- Subtle Technical Illustration matching Reference Image -->
+                <div class="chapter-tech-illustration">
+                  <div class="tech-ill-diagram">
+                    <div class="tech-ill-col">
+                      <span class="tech-tag-badge">Network Intrusion Detection</span>
+                      <svg viewBox="0 0 100 64" width="84" height="54" class="ill-svg" fill="none" stroke="currentColor">
+                        <rect x="14" y="6" width="72" height="42" rx="4" stroke-width="2"/>
+                        <line x1="20" y1="16" x2="48" y2="16" stroke-width="1.8" stroke-dasharray="3,2"/>
+                        <line x1="20" y1="24" x2="60" y2="24" stroke-width="1.8"/>
+                        <line x1="20" y1="32" x2="44" y2="32" stroke-width="1.8"/>
+                        <polyline points="48,36 56,28 64,32 74,20" stroke="var(--coral)" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M4 48 L96 48 L88 58 L12 58 Z" stroke-width="2"/>
+                      </svg>
+                    </div>
+                    <div class="tech-ill-col">
+                      <span class="tech-tag-badge">Data Analysis Graph</span>
+                      <svg viewBox="0 0 80 64" width="76" height="54" class="ill-svg" fill="none" stroke="currentColor">
+                        <circle cx="40" cy="32" r="7" fill="rgba(255, 98, 66, 0.18)" stroke="var(--coral)" stroke-width="2"/>
+                        <circle cx="16" cy="18" r="5" stroke-width="1.8"/>
+                        <circle cx="64" cy="16" r="5" stroke-width="1.8"/>
+                        <circle cx="18" cy="48" r="5" stroke-width="1.8"/>
+                        <circle cx="62" cy="48" r="5" stroke-width="1.8"/>
+                        <line x1="21" y1="20" x2="35" y2="28" stroke-width="1.5"/>
+                        <line x1="59" y1="19" x2="45" y2="28" stroke-width="1.5"/>
+                        <line x1="23" y1="46" x2="35" y2="36" stroke-width="1.5"/>
+                        <line x1="57" y1="46" x2="45" y2="36" stroke-width="1.5"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="handwritten-annotation">
+                  <span class="hand-pin">⭐</span>
+                  <p>“Working on a real-world problem showed me how data, technology, and thoughtful interfaces can come together to solve practical challenges.”</p>
+                </div>
+
+                <div class="page-footer">
+                  <span class="page-number">01</span>
+                  <span class="page-turn-hint" aria-hidden="true">◂ Turn page</span>
+                </div>
+              </div>
+
+              <!-- Right Page -->
+              <div class="book-page page-right">
+                <div class="page-header">
+                  <span class="chapter-sub">INTERNSHIP EXPERIENCE</span>
+                  <span class="experience-status status-completed">Completed</span>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">KEY RESPONSIBILITIES</h4>
+                  <ul class="book-bullets">
+                    <li><span>✦</span> Explored and prepared network traffic data for machine learning analysis.</li>
+                    <li><span>✦</span> Worked with the UNSW-NB15 dataset for network intrusion and anomaly detection.</li>
+                    <li><span>✦</span> Supported machine learning experimentation and analysis of network activity.</li>
+                    <li><span>✦</span> Designed UI screens for the BEL website.</li>
+                  </ul>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">SKILLS LEARNED</h4>
+                  <div class="skills-pill-group">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Network Security Fundamentals</span>
+                    <span class="skill-tag">Dataset Exploration</span>
+                    <span class="skill-tag">UI Design</span>
+                  </div>
+                </div>
+
+                <div class="takeaway-box">
+                  <span class="takeaway-label">MEMORABLE TAKEAWAY</span>
+                  <p class="takeaway-quote">
+                    “Working on a real-world problem showed me how data, technology, and thoughtful interfaces can come together to solve practical challenges.”
+                  </p>
+                </div>
+
+                <div class="page-footer">
+                  <button class="read-chapter-btn" data-chapter="0" aria-label="Read Chapter 01 detailed experience">
+                    <span class="book-icon-sm">📖</span>
+                    <span>Read this chapter</span>
+                    <span class="btn-arrow">↗</span>
+                  </button>
+                  <span class="page-number">02</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHAPTER 02: Unified Mentor -->
+            <div class="book-spread" data-index="1" id="chapter-1">
+              <!-- Left Page -->
+              <div class="book-page page-left">
+                <div class="page-header">
+                  <span class="chapter-numeral">CHAPTER 02</span>
+                  <span class="chapter-date">June 2026 – September 2026</span>
+                </div>
+
+                <div class="chapter-title-group">
+                  <div class="company-logo-badge badge-blue">
+                    <span class="badge-icon">📊</span>
+                  </div>
+                  <div>
+                    <h3 class="experience-company">Unified Mentor</h3>
+                    <p class="experience-role">Data Analyst Intern</p>
+                  </div>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">WHAT I WORKED ON</h4>
+                  <p class="page-narrative">
+                    Participated in a structured Data Analyst internship and fellowship focused on practical, project-based learning. The program involved working on analytics projects using data tools to explore datasets, extract insights, and communicate findings.
+                  </p>
+                </div>
+
+                <!-- Subtle Technical Illustration: Data Analytics Toolchain -->
+                <div class="chapter-tech-illustration">
+                  <div class="tech-ill-diagram">
+                    <div class="tech-ill-col">
+                      <span class="tech-tag-badge">Dataset Exploration</span>
+                      <svg viewBox="0 0 100 64" width="84" height="54" class="ill-svg" fill="none" stroke="currentColor">
+                        <rect x="10" y="6" width="80" height="46" rx="4" stroke-width="2"/>
+                        <line x1="10" y1="20" x2="90" y2="20" stroke-width="1.6"/>
+                        <line x1="36" y1="6" x2="36" y2="52" stroke-width="1.6"/>
+                        <circle cx="23" cy="13" r="2.5" fill="var(--sun)"/>
+                        <circle cx="23" cy="30" r="2.5" fill="var(--mint)"/>
+                        <circle cx="23" cy="43" r="2.5" fill="var(--coral)"/>
+                        <line x1="46" y1="30" x2="78" y2="30" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="46" y1="43" x2="70" y2="43" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="tech-ill-col">
+                      <span class="tech-tag-badge">BI Dashboard Pipeline</span>
+                      <svg viewBox="0 0 80 64" width="76" height="54" class="ill-svg" fill="none" stroke="currentColor">
+                        <rect x="10" y="36" width="10" height="20" rx="2" fill="var(--sun)" opacity="0.85"/>
+                        <rect x="26" y="24" width="10" height="32" rx="2" fill="var(--coral)" opacity="0.85"/>
+                        <rect x="42" y="14" width="10" height="42" rx="2" fill="var(--mint)" opacity="0.85"/>
+                        <rect x="58" y="20" width="10" height="36" rx="2" fill="var(--lilac)" opacity="0.85"/>
+                        <polyline points="12,32 30,20 46,10 64,16" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="handwritten-annotation">
+                  <span class="hand-pin">💡</span>
+                  <p>“Turning raw rows into structured, understandable insights.”</p>
+                </div>
+
+                <div class="page-footer">
+                  <span class="page-number">03</span>
+                  <span class="page-turn-hint" aria-hidden="true">◂ Turn page</span>
+                </div>
+              </div>
+
+              <!-- Right Page -->
+              <div class="book-page page-right">
+                <div class="page-header">
+                  <span class="chapter-sub">INTERNSHIP EXPERIENCE</span>
+                  <span class="experience-status status-completed">Completed</span>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">KEY RESPONSIBILITIES</h4>
+                  <ul class="book-bullets">
+                    <li><span>✦</span> Worked on assigned data analytics projects as part of the internship.</li>
+                    <li><span>✦</span> Focused on data exploration, analysis, and extracting useful insights.</li>
+                    <li><span>✦</span> Developed practical familiarity with SQL, Python, Excel, and Power BI through project-based work, reflecting the tools actually used in each project.</li>
+                    <li><span>✦</span> Organized findings and worked toward presenting data-driven results clearly.</li>
+                  </ul>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">SKILLS LEARNED</h4>
+                  <div class="skills-pill-group">
+                    <span class="skill-tag">Data Analytics</span>
+                    <span class="skill-tag">Data Cleaning</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Power BI</span>
+                  </div>
+                </div>
+
+                <div class="takeaway-box">
+                  <span class="takeaway-label">MEMORABLE TAKEAWAY</span>
+                  <p class="takeaway-quote">
+                    “Data becomes valuable when you can turn it into a clear insight and explain why it matters.”
+                  </p>
+                </div>
+
+                <div class="page-footer">
+                  <button class="read-chapter-btn" data-chapter="1" aria-label="Read Chapter 02 detailed experience">
+                    <span class="book-icon-sm">📖</span>
+                    <span>Read this chapter</span>
+                    <span class="btn-arrow">↗</span>
+                  </button>
+                  <span class="page-number">04</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHAPTER 03: Azisly.ai -->
+            <div class="book-spread" data-index="2" id="chapter-2">
+              <!-- Left Page -->
+              <div class="book-page page-left">
+                <div class="page-header">
+                  <span class="chapter-numeral">CHAPTER 03</span>
+                  <span class="chapter-date">October 2026 – Present</span>
+                </div>
+
+                <div class="chapter-title-group">
+                  <div class="company-logo-badge badge-purple">
+                    <span class="badge-icon">🚀</span>
+                  </div>
+                  <div>
+                    <h3 class="experience-company">Azisly.ai</h3>
+                    <p class="experience-role">Business Development Intern</p>
+                  </div>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">WHAT I'M WORKING ON</h4>
+                  <p class="page-narrative">
+                    Beginning my journey in B2B business development, with a focus on understanding business needs, researching potential clients, identifying relevant opportunities, and learning how to communicate value to prospective customers.
+                  </p>
+                </div>
+
+                <!-- Subtle Technical Illustration: B2B Opportunity Pipeline -->
+                <div class="chapter-tech-illustration">
+                  <div class="tech-ill-diagram">
+                    <div class="tech-ill-col">
+                      <span class="tech-tag-badge">B2B Client Research</span>
+                      <svg viewBox="0 0 100 64" width="84" height="54" class="ill-svg" fill="none" stroke="currentColor">
+                        <circle cx="36" cy="28" r="15" stroke-width="2"/>
+                        <line x1="47" y1="39" x2="66" y2="54" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="36" cy="25" r="4.5" fill="var(--coral)" opacity="0.75"/>
+                        <path d="M26 36 C 26 31, 46 31, 46 36" stroke-width="1.8"/>
+                      </svg>
+                    </div>
+                    <div class="tech-ill-col">
+                      <span class="tech-tag-badge">Sales Pipeline</span>
+                      <svg viewBox="0 0 80 64" width="76" height="54" class="ill-svg" fill="none" stroke="currentColor">
+                        <path d="M12 10 L68 10 L54 26 L26 26 Z" fill="rgba(255, 183, 3, 0.25)" stroke="var(--sun)" stroke-width="1.8"/>
+                        <path d="M26 29 L54 29 L46 43 L34 43 Z" fill="rgba(255, 98, 66, 0.25)" stroke="var(--coral)" stroke-width="1.8"/>
+                        <path d="M34 46 L46 46 L43 56 L37 56 Z" fill="rgba(16, 185, 129, 0.35)" stroke="var(--mint)" stroke-width="1.8"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="handwritten-annotation">
+                  <span class="hand-pin">🌱</span>
+                  <p>“Every conversation is a learning step in understanding genuine client needs.”</p>
+                </div>
+
+                <div class="page-footer">
+                  <span class="page-number">05</span>
+                  <span class="page-turn-hint" aria-hidden="true">◂ Turn page</span>
+                </div>
+              </div>
+
+              <!-- Right Page -->
+              <div class="book-page page-right">
+                <div class="page-header">
+                  <span class="chapter-sub">ONGOING INTERNSHIP</span>
+                  <span class="experience-status status-inprogress">In Progress</span>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">KEY RESPONSIBILITIES</h4>
+                  <ul class="book-bullets">
+                    <li><span>✦</span> Learn about B2B customers, their business challenges, and potential solutions.</li>
+                    <li><span>✦</span> Research prospective clients and identify relevant business opportunities.</li>
+                    <li><span>✦</span> Support lead generation, outreach, and prospect communication as assigned.</li>
+                    <li><span>✦</span> Develop an understanding of the sales pipeline, follow-ups, and relationship building.</li>
+                    <li><span>✦</span> Learn to communicate product value and contribute to business development goals.</li>
+                  </ul>
+                </div>
+
+                <div class="page-content-block">
+                  <h4 class="page-subhead">SKILLS I'M DEVELOPING</h4>
+                  <div class="skills-pill-group">
+                    <span class="skill-tag">B2B Communication</span>
+                    <span class="skill-tag">Lead Research</span>
+                    <span class="skill-tag">Prospecting</span>
+                    <span class="skill-tag">Business Development</span>
+                    <span class="skill-tag">Client Relationship Building</span>
+                    <span class="skill-tag">Sales Fundamentals</span>
+                  </div>
+                </div>
+
+                <div class="takeaway-box">
+                  <span class="takeaway-label">MEMORABLE TAKEAWAY</span>
+                  <p class="takeaway-quote">
+                    “Every conversation is an opportunity to understand a problem, build trust, and discover where value can be created.”
+                  </p>
+                </div>
+
+                <div class="page-footer">
+                  <button class="read-chapter-btn" data-chapter="2" aria-label="Read Chapter 03 detailed experience">
+                    <span class="book-icon-sm">📖</span>
+                    <span>Read this chapter</span>
+                    <span class="btn-arrow">↗</span>
+                  </button>
+                  <span class="page-number">06</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book Controls: Previous / Next Chapter & Chapter Counter -->
+          <div class="book-controls-bar">
+            <button class="book-nav-btn prev-btn" id="bookPrevBtn" aria-label="Go to previous chapter">
+              <span class="nav-arrow">←</span>
+              <span>Previous Chapter</span>
+            </button>
+
+            <div class="book-chapter-counter" id="bookChapterIndicator">
+              <span class="counter-label">Chapter</span>
+              <span class="counter-current" id="counterCurrent">01</span>
+              <span class="counter-sep">of</span>
+              <span class="counter-total">03</span>
+            </div>
+
+            <button class="book-nav-btn next-btn" id="bookNextBtn" aria-label="Go to next chapter">
+              <span>Next Chapter</span>
+              <span class="nav-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chapter Deep Dive Modal / Expanded Reader -->
+          <div class="chapter-modal-backdrop" id="chapterModalBackdrop" aria-hidden="true">
+            <div class="chapter-detail-modal" id="chapterModal" role="dialog" aria-modal="true" aria-labelledby="chapterModalCompany">
+              <button class="modal-close-btn" id="chapterModalCloseBtn" aria-label="Close chapter details">✕</button>
+
+              <div class="chapter-modal-header">
+                <span class="modal-badge" id="chapterModalBadge">CHAPTER 01 / JUNE 2025 – JULY 2025</span>
+                <div class="chapter-modal-company-row">
+                  <div class="company-logo-badge modal-company-badge" id="chapterModalIcon">🛡️</div>
+                  <div>
+                    <h3 class="modal-title" id="chapterModalCompany">Bharat Electronics Limited (BEL)</h3>
+                    <p class="chapter-modal-meta" id="chapterModalRoleMeta">Machine Learning Intern • June 2025 – July 2025 (Completed)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chapter-modal-body">
+                <div class="chapter-modal-section">
+                  <h4 class="modal-subhead">WHAT I WORKED ON</h4>
+                  <p class="modal-desc" id="chapterModalNarrative">Worked on a machine learning-based network intrusion and anomaly detection project using the UNSW-NB15 dataset.</p>
+                </div>
+
+                <div class="chapter-modal-section">
+                  <h4 class="modal-subhead">KEY RESPONSIBILITIES & CONTRIBUTIONS</h4>
+                  <ul class="book-bullets modal-bullets" id="chapterModalResponsibilities">
+                    <!-- Populated by JS -->
+                  </ul>
+                </div>
+
+                <div class="chapter-modal-section">
+                  <h4 class="modal-subhead">SKILLS & METHODS LEARNED</h4>
+                  <div class="skills-pill-group" id="chapterModalSkills">
+                    <!-- Populated by JS -->
+                  </div>
+                </div>
+
+                <div class="takeaway-box modal-takeaway-box">
+                  <span class="takeaway-label">MEMORABLE TAKEAWAY</span>
+                  <p class="takeaway-quote" id="chapterModalTakeaway">“Working on a real-world problem showed me how data, technology, and thoughtful interfaces can come together to solve practical challenges.”</p>
+                </div>
+              </div>
+
+              <div class="chapter-modal-footer">
+                <span class="chapter-edit-hint">✦ Career Experience Chapter</span>
+                <button class="modal-btn-dismiss" id="chapterModalDismissBtn">Done Reading</button>
+              </div>
+            </div>
+          </div>
+    </section>
+
+    <!-- Section: Skills Marquee (Between Work Experience & Projects) -->
+    <section class="skills-marquee-section" id="skillsMarquee" aria-label="Skills and Technologies">
+      <div class="skills-marquee-header">
+        <div class="skills-eyebrow-wrap">
+          <span class="skills-eyebrow">TOOLKIT & CRAFT</span>
+          <span class="skills-eyebrow-line"></span>
+        </div>
+        <h2 class="skills-section-heading">Skills & Technologies</h2>
+      </div>
+
+      <div class="marquee-wrapper">
+        <!-- Row 1: Moves Left -->
+        <div class="marquee-track track-left" role="region" aria-label="Design, Data and AI Technologies">
+          <div class="marquee-content">
+
+            <!-- 1. Figma -->
+            <div class="skill-item" data-skill="Figma" title="Figma" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 38 57" width="28" height="28" fill="none">
+                  <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+                  <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+                  <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+                  <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+                  <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Figma</span>
+            </div>
+
+            <!-- 2. Canva -->
+            <div class="skill-item" data-skill="Canva" title="Canva" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="24" cy="24" r="23" fill="url(#canvaGrad)"/>
+                  <path d="M28.4 20.8C27.9 18.2 26 16.4 23.3 16.4C19.2 16.4 15.8 20.3 15.8 25.1C15.8 29.5 18.8 32.6 23.2 32.6C26.1 32.6 28.2 31.1 29.2 28.9L26.5 27.6C25.8 28.9 24.7 29.8 23.3 29.8C20.6 29.8 18.9 27.7 18.9 24.9C18.9 21.8 21.1 19.2 23.5 19.2C24.9 19.2 25.9 20.1 26.2 21.4L28.4 20.8Z" fill="#FFFFFF"/>
+                  <defs>
+                    <linearGradient id="canvaGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#00C4CC"/>
+                      <stop offset="1" stop-color="#7D2AE8"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Canva</span>
+            </div>
+
+            <!-- 3. Python -->
+            <div class="skill-item" data-skill="Python" title="Python" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M23.6 4C13.2 4 13.8 8.5 13.8 8.5L13.8 13.2H24V14.7H9.8C4.5 14.7 4 19.9 4 23.8C4 28.3 7.8 28.8 7.8 28.8L11.5 28.8L11.5 24.2C11.5 18.9 16 18.5 16 18.5L25.6 18.5C27.5 18.5 29 17 29 15.1L29 7.4C29 5.5 26.6 4 23.6 4ZM19 7.8C20 7.8 20.8 8.6 20.8 9.6C20.8 10.6 20 11.4 19 11.4C18 11.4 17.2 10.6 17.2 9.6C17.2 8.6 18 7.8 19 7.8Z" fill="#387EB8"/>
+                  <path d="M24.4 44C34.8 44 34.2 39.5 34.2 39.5L34.2 34.8H24V33.3H38.2C43.5 33.3 44 28.1 44 24.2C44 19.7 40.2 19.2 40.2 19.2L36.5 19.2L36.5 23.8C36.5 29.1 32 29.5 32 29.5L22.4 29.5C20.5 29.5 19 31 19 32.9L19 40.6C19 42.5 21.4 44 24.4 44ZM29 40.2C28 40.2 27.2 39.4 27.2 38.4C27.2 37.4 28 36.6 29 36.6C30 36.6 30.8 37.4 30.8 38.4C30.8 39.4 30 40.2 29 40.2Z" fill="#FFE052"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Python</span>
+            </div>
+
+            <!-- 4. Microsoft Power BI -->
+            <div class="skill-item" data-skill="Microsoft Power BI" title="Microsoft Power BI" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="none">
+                  <rect x="8" y="24" width="7.5" height="18" rx="2" fill="#E6AD10"/>
+                  <rect x="18.5" y="16" width="7.5" height="26" rx="2" fill="#F2C811"/>
+                  <rect x="29" y="8" width="7.5" height="34" rx="2" fill="#F9DE69"/>
+                  <rect x="33" y="8" width="3.5" height="34" rx="1.75" fill="#F2C811" opacity="0.7"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Microsoft Power BI</span>
+            </div>
+
+            <!-- 5. Microsoft Excel -->
+            <div class="skill-item" data-skill="Microsoft Excel" title="Microsoft Excel" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M38 9H18C16.9 9 16 9.9 16 11V16H38C39.1 16 40 16.9 40 18V32C40 33.1 39.1 34 38 34H16V37C16 38.1 16.9 39 18 39H38C39.1 39 40 38.1 40 37V11C40 9.9 39.1 9 38 9Z" fill="#107C41"/>
+                  <rect x="8" y="13" width="21" height="22" rx="2.5" fill="#107C41"/>
+                  <path d="M14.5 19.5L18.2 24L14.3 28.5H16.8L19.4 25.2L22.1 28.5H24.5L20.6 24L24.3 19.5H21.9L19.4 22.8L16.9 19.5H14.5Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Microsoft Excel</span>
+            </div>
+
+            <!-- 6. TensorFlow -->
+            <div class="skill-item" data-skill="TensorFlow" title="TensorFlow" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M24 4L7 14L24 24L41 14L24 4Z" fill="#FF9100"/>
+                  <path d="M7 14V34L24 44V24L7 14Z" fill="#E65100"/>
+                  <path d="M41 14V34L24 44V24L41 14Z" fill="#FF6F00"/>
+                  <path d="M24 16L17 20V28L24 32L31 28V20L24 16Z" fill="#FFFFFF" opacity="0.9"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">TensorFlow</span>
+            </div>
+
+            <!-- 7. Keras -->
+            <div class="skill-item" data-skill="Keras" title="Keras" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="8" fill="#D00000"/>
+                  <path d="M15 13H20V22.2L27.6 13H33.8L24.8 23.4L34.5 35H28.2L20 24.8V35H15V13Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Keras</span>
+            </div>
+
+            <!-- 8. Scikit-learn -->
+            <div class="skill-item" data-skill="Scikit-learn" title="Scikit-learn" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="19" cy="19" r="8" fill="#3499CD"/>
+                  <circle cx="29" cy="29" r="8" fill="#F7931E"/>
+                  <path d="M19 19L29 29" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="2 2"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Scikit-learn</span>
+            </div>
+
+            <!-- 9. OpenCV -->
+            <div class="skill-item" data-skill="OpenCV" title="OpenCV" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="24" cy="14" r="8" stroke="#E84142" stroke-width="4.5" stroke-dasharray="38 12" stroke-dashoffset="6"/>
+                  <circle cx="15" cy="30" r="8" stroke="#42B883" stroke-width="4.5" stroke-dasharray="38 12" stroke-dashoffset="22"/>
+                  <circle cx="33" cy="30" r="8" stroke="#3E5CE8" stroke-width="4.5" stroke-dasharray="38 12" stroke-dashoffset="-10"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">OpenCV</span>
+            </div>
+
+            <!-- 10. Hugging Face -->
+            <div class="skill-item" data-skill="Hugging Face" title="Hugging Face" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="24" cy="24" r="22" fill="#FFD21E"/>
+                  <ellipse cx="17" cy="20" rx="3" ry="3.5" fill="#222222"/>
+                  <ellipse cx="31" cy="20" rx="3" ry="3.5" fill="#222222"/>
+                  <circle cx="18" cy="19" r="1" fill="#FFFFFF"/>
+                  <circle cx="32" cy="19" r="1" fill="#FFFFFF"/>
+                  <path d="M17 27C17 31 20 34 24 34C28 34 31 31 31 27" stroke="#222222" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M8 26C11 25 13 28 12 31C11 34 8 33 6 30C4.5 28 6 27 8 26Z" fill="#FFA800"/>
+                  <path d="M40 26C37 25 35 28 36 31C37 34 40 33 42 30C43.5 28 42 27 40 26Z" fill="#FFA800"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Hugging Face</span>
+            </div>
+
+            <!-- 11. LangChain -->
+            <div class="skill-item" data-skill="LangChain" title="LangChain" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="10" fill="#1C3C3C"/>
+                  <path d="M14 26C14 20.5 18.5 16 24 16C29.5 16 34 20.5 34 26" stroke="#2BD981" stroke-width="3.5" stroke-linecap="round"/>
+                  <circle cx="16" cy="30" r="4" fill="#2BD981"/>
+                  <circle cx="32" cy="30" r="4" fill="#2BD981"/>
+                  <path d="M21 27L27 27" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">LangChain</span>
+            </div>
+          </div>
+          <div class="marquee-content" aria-hidden="true">
+
+            <!-- 1. Figma -->
+            <div class="skill-item" data-skill="Figma" title="Figma" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 38 57" width="28" height="28" fill="none">
+                  <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+                  <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+                  <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+                  <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+                  <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Figma</span>
+            </div>
+
+            <!-- 2. Canva -->
+            <div class="skill-item" data-skill="Canva" title="Canva" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="24" cy="24" r="23" fill="url(#canvaGrad)"/>
+                  <path d="M28.4 20.8C27.9 18.2 26 16.4 23.3 16.4C19.2 16.4 15.8 20.3 15.8 25.1C15.8 29.5 18.8 32.6 23.2 32.6C26.1 32.6 28.2 31.1 29.2 28.9L26.5 27.6C25.8 28.9 24.7 29.8 23.3 29.8C20.6 29.8 18.9 27.7 18.9 24.9C18.9 21.8 21.1 19.2 23.5 19.2C24.9 19.2 25.9 20.1 26.2 21.4L28.4 20.8Z" fill="#FFFFFF"/>
+                  <defs>
+                    <linearGradient id="canvaGradDup" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#00C4CC"/>
+                      <stop offset="1" stop-color="#7D2AE8"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Canva</span>
+            </div>
+
+            <!-- 3. Python -->
+            <div class="skill-item" data-skill="Python" title="Python" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M23.6 4C13.2 4 13.8 8.5 13.8 8.5L13.8 13.2H24V14.7H9.8C4.5 14.7 4 19.9 4 23.8C4 28.3 7.8 28.8 7.8 28.8L11.5 28.8L11.5 24.2C11.5 18.9 16 18.5 16 18.5L25.6 18.5C27.5 18.5 29 17 29 15.1L29 7.4C29 5.5 26.6 4 23.6 4ZM19 7.8C20 7.8 20.8 8.6 20.8 9.6C20.8 10.6 20 11.4 19 11.4C18 11.4 17.2 10.6 17.2 9.6C17.2 8.6 18 7.8 19 7.8Z" fill="#387EB8"/>
+                  <path d="M24.4 44C34.8 44 34.2 39.5 34.2 39.5L34.2 34.8H24V33.3H38.2C43.5 33.3 44 28.1 44 24.2C44 19.7 40.2 19.2 40.2 19.2L36.5 19.2L36.5 23.8C36.5 29.1 32 29.5 32 29.5L22.4 29.5C20.5 29.5 19 31 19 32.9L19 40.6C19 42.5 21.4 44 24.4 44ZM29 40.2C28 40.2 27.2 39.4 27.2 38.4C27.2 37.4 28 36.6 29 36.6C30 36.6 30.8 37.4 30.8 38.4C30.8 39.4 30 40.2 29 40.2Z" fill="#FFE052"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Python</span>
+            </div>
+
+            <!-- 4. Microsoft Power BI -->
+            <div class="skill-item" data-skill="Microsoft Power BI" title="Microsoft Power BI" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="none">
+                  <rect x="8" y="24" width="7.5" height="18" rx="2" fill="#E6AD10"/>
+                  <rect x="18.5" y="16" width="7.5" height="26" rx="2" fill="#F2C811"/>
+                  <rect x="29" y="8" width="7.5" height="34" rx="2" fill="#F9DE69"/>
+                  <rect x="33" y="8" width="3.5" height="34" rx="1.75" fill="#F2C811" opacity="0.7"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Microsoft Power BI</span>
+            </div>
+
+            <!-- 5. Microsoft Excel -->
+            <div class="skill-item" data-skill="Microsoft Excel" title="Microsoft Excel" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M38 9H18C16.9 9 16 9.9 16 11V16H38C39.1 16 40 16.9 40 18V32C40 33.1 39.1 34 38 34H16V37C16 38.1 16.9 39 18 39H38C39.1 39 40 38.1 40 37V11C40 9.9 39.1 9 38 9Z" fill="#107C41"/>
+                  <rect x="8" y="13" width="21" height="22" rx="2.5" fill="#107C41"/>
+                  <path d="M14.5 19.5L18.2 24L14.3 28.5H16.8L19.4 25.2L22.1 28.5H24.5L20.6 24L24.3 19.5H21.9L19.4 22.8L16.9 19.5H14.5Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Microsoft Excel</span>
+            </div>
+
+            <!-- 6. TensorFlow -->
+            <div class="skill-item" data-skill="TensorFlow" title="TensorFlow" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M24 4L7 14L24 24L41 14L24 4Z" fill="#FF9100"/>
+                  <path d="M7 14V34L24 44V24L7 14Z" fill="#E65100"/>
+                  <path d="M41 14V34L24 44V24L41 14Z" fill="#FF6F00"/>
+                  <path d="M24 16L17 20V28L24 32L31 28V20L24 16Z" fill="#FFFFFF" opacity="0.9"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >TensorFlow</span>
+            </div>
+
+            <!-- 7. Keras -->
+            <div class="skill-item" data-skill="Keras" title="Keras" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="8" fill="#D00000"/>
+                  <path d="M15 13H20V22.2L27.6 13H33.8L24.8 23.4L34.5 35H28.2L20 24.8V35H15V13Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Keras</span>
+            </div>
+
+            <!-- 8. Scikit-learn -->
+            <div class="skill-item" data-skill="Scikit-learn" title="Scikit-learn" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="19" cy="19" r="8" fill="#3499CD"/>
+                  <circle cx="29" cy="29" r="8" fill="#F7931E"/>
+                  <path d="M19 19L29 29" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="2 2"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Scikit-learn</span>
+            </div>
+
+            <!-- 9. OpenCV -->
+            <div class="skill-item" data-skill="OpenCV" title="OpenCV" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="24" cy="14" r="8" stroke="#E84142" stroke-width="4.5" stroke-dasharray="38 12" stroke-dashoffset="6"/>
+                  <circle cx="15" cy="30" r="8" stroke="#42B883" stroke-width="4.5" stroke-dasharray="38 12" stroke-dashoffset="22"/>
+                  <circle cx="33" cy="30" r="8" stroke="#3E5CE8" stroke-width="4.5" stroke-dasharray="38 12" stroke-dashoffset="-10"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >OpenCV</span>
+            </div>
+
+            <!-- 10. Hugging Face -->
+            <div class="skill-item" data-skill="Hugging Face" title="Hugging Face" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <circle cx="24" cy="24" r="22" fill="#FFD21E"/>
+                  <ellipse cx="17" cy="20" rx="3" ry="3.5" fill="#222222"/>
+                  <ellipse cx="31" cy="20" rx="3" ry="3.5" fill="#222222"/>
+                  <circle cx="18" cy="19" r="1" fill="#FFFFFF"/>
+                  <circle cx="32" cy="19" r="1" fill="#FFFFFF"/>
+                  <path d="M17 27C17 31 20 34 24 34C28 34 31 31 31 27" stroke="#222222" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M8 26C11 25 13 28 12 31C11 34 8 33 6 30C4.5 28 6 27 8 26Z" fill="#FFA800"/>
+                  <path d="M40 26C37 25 35 28 36 31C37 34 40 33 42 30C43.5 28 42 27 40 26Z" fill="#FFA800"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Hugging Face</span>
+            </div>
+
+            <!-- 11. LangChain -->
+            <div class="skill-item" data-skill="LangChain" title="LangChain" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="10" fill="#1C3C3C"/>
+                  <path d="M14 26C14 20.5 18.5 16 24 16C29.5 16 34 20.5 34 26" stroke="#2BD981" stroke-width="3.5" stroke-linecap="round"/>
+                  <circle cx="16" cy="30" r="4" fill="#2BD981"/>
+                  <circle cx="32" cy="30" r="4" fill="#2BD981"/>
+                  <path d="M21 27L27 27" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >LangChain</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Moves Right -->
+        <div class="marquee-track track-right" role="region" aria-label="Frontend, Backend and Developer Tools">
+          <div class="marquee-content">
+
+            <!-- 1. HTML5 -->
+            <div class="skill-item" data-skill="HTML5" title="HTML5" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M9 4L12.5 39.5L24 43L35.5 39.5L39 4H9Z" fill="#E44D26"/>
+                  <path d="M24 7.5V39.6L32.6 37L35.6 7.5H24Z" fill="#F16529"/>
+                  <path d="M24 15.5H16.8L17.3 21.5H24V27.5H17.8L17.4 23.5H13.8L14.6 31.8L24 34.4V34.5L33.4 31.8L34.4 21.5H24V15.5ZM24 21.5V15.5H34.9L34.4 21.5H24Z" fill="#EBEBEB"/>
+                  <path d="M24 15.5V21.5H29.7L29.3 26.2L24 27.6V33.6L31.6 31.5L32.6 21.5H24V15.5Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">HTML5</span>
+            </div>
+
+            <!-- 2. CSS3 -->
+            <div class="skill-item" data-skill="CSS3" title="CSS3" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M9 4L12.5 39.5L24 43L35.5 39.5L39 4H9Z" fill="#1572B6"/>
+                  <path d="M24 7.5V39.6L32.6 37L35.6 7.5H24Z" fill="#33A9DC"/>
+                  <path d="M24 15.5H16.8L17.3 21.5H24V27.5H17.8L17.4 23.5H13.8L14.6 31.8L24 34.4V34.5L33.4 31.8L34.7 15.5H24ZM24 27.5V33.6L29.3 32.2L29.7 27.5H24Z" fill="#EBEBEB"/>
+                  <path d="M24 15.5V21.5H30.2L29.8 26.2L24 27.6V33.6L31.6 31.5L32.7 15.5H24Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">CSS3</span>
+            </div>
+
+            <!-- 3. JavaScript -->
+            <div class="skill-item" data-skill="JavaScript" title="JavaScript" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="none">
+                  <rect width="48" height="48" rx="6" fill="#F7DF1E"/>
+                  <path d="M14.5 38.5L18.8 35.8C19.9 37.8 21.2 39.1 23.7 39.1C26.1 39.1 27.5 37.9 27.5 35.5V23.5H32.8V35.6C32.8 41 29.5 43.5 24 43.5C18.8 43.5 15.7 40.8 14.5 38.5ZM33.2 38.2L37.5 35.6C38.7 37.7 40.5 39.2 43.2 39.2C45.5 39.2 47 38.1 47 36.4C47 34.4 45.4 33.6 42.6 32.3L41.1 31.6C36.8 29.7 33.9 27.4 33.9 22.8C33.9 18.4 37.4 15 42.7 15C46.8 15 49.5 16.9 51 20.2L46.8 22.8C45.8 21.1 44.5 20.1 42.6 20.1C40.6 20.1 39.3 21.1 39.3 22.6C39.3 24.3 40.6 25.1 43.2 26.2L44.7 26.9C49.6 29 52.6 31.3 52.6 36.1C52.6 41.2 48.6 44 43.1 44C38.1 44 34.6 41.3 33.2 38.2Z" transform="translate(-8, -4) scale(0.88)" fill="#000000"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">JavaScript</span>
+            </div>
+
+            <!-- 4. React -->
+            <div class="skill-item" data-skill="React" title="React" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="32" height="32" fill="none">
+                  <ellipse cx="24" cy="24" rx="7" ry="19" stroke="#61DAFB" stroke-width="2.4" transform="rotate(30 24 24)"/>
+                  <ellipse cx="24" cy="24" rx="7" ry="19" stroke="#61DAFB" stroke-width="2.4" transform="rotate(90 24 24)"/>
+                  <ellipse cx="24" cy="24" rx="7" ry="19" stroke="#61DAFB" stroke-width="2.4" transform="rotate(150 24 24)"/>
+                  <circle cx="24" cy="24" r="3.8" fill="#61DAFB"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">React</span>
+            </div>
+
+            <!-- 5. Node.js -->
+            <div class="skill-item" data-skill="Node.js" title="Node.js" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M24 5L41.3 15V35L24 45L6.7 35V15L24 5Z" fill="#339933"/>
+                  <path d="M24 8.5L38.3 16.8V33.2L24 41.5L9.7 33.2V16.8L24 8.5Z" fill="#5FA04E"/>
+                  <path d="M24 17C21.8 17 20 18.8 20 21V29H24V22H26V29H30V21C30 18.8 28.2 17 26 17H24Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Node.js</span>
+            </div>
+
+            <!-- 6. PostgreSQL -->
+            <div class="skill-item" data-skill="PostgreSQL" title="PostgreSQL" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M24 4C13 4 5 12 5 22C5 29.5 9.5 35.8 16 38.5V44L23 40C23.3 40 23.7 40 24 40C35 40 43 32 43 22C43 12 35 4 24 4Z" fill="#4169E1"/>
+                  <path d="M20 16C20 16 26 13 31 18C36 23 34 30 30 33C27 35 24 33 24 33" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="21" cy="21" r="2" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">PostgreSQL</span>
+            </div>
+
+            <!-- 7. MySQL -->
+            <div class="skill-item" data-skill="MySQL" title="MySQL" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="8" fill="#00758F"/>
+                  <path d="M12 28C14 22 20 16 28 16C33 16 37 19 36 24C35 27 31 29 28 29C23 29 20 26 18 31" stroke="#F29111" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="27" cy="20" r="1.8" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">MySQL</span>
+            </div>
+
+            <!-- 8. Firebase -->
+            <div class="skill-item" data-skill="Firebase" title="Firebase" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M9.8 35.6L18.4 19.3L13.7 10.6C13.3 9.8 12.1 9.9 11.8 10.7L9.8 35.6Z" fill="#FFA000"/>
+                  <path d="M25.6 25.1L21.3 16.8C20.9 16.1 19.8 16.2 19.5 17L9.8 35.6L25.6 25.1Z" fill="#F57C00"/>
+                  <path d="M26.2 9.5C25.6 8.8 24.5 9 24.3 9.9L9.8 35.6L24.5 44C25.2 44.4 26 44.2 26.5 43.6L38.2 18.2C38.6 17.3 37.6 16.5 36.8 17.1L26.2 9.5Z" fill="#FFCA28"/>
+                  <path d="M38.2 18.2L26.5 43.6C26 44.2 25.2 44.4 24.5 44L9.8 35.6L24.5 44L38.2 18.2Z" fill="#FFA000"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Firebase</span>
+            </div>
+
+            <!-- 9. GitHub -->
+            <div class="skill-item" data-skill="GitHub" title="GitHub" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="currentColor" class="github-icon-svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4C12.95 4 4 12.95 4 24C4 32.84 9.73 40.34 17.65 42.98C18.65 43.16 19.02 42.55 19.02 42.02C19.02 41.55 19 39.87 19 38.23C13.44 39.44 12.27 35.91 12.27 35.91C11.36 33.6 10.05 32.99 10.05 32.99C8.24 31.75 10.19 31.78 10.19 31.78C12.19 31.92 13.24 33.83 13.24 33.83C15.02 36.88 17.91 36 19.05 35.48C19.23 34.19 19.75 33.31 20.32 32.81C15.88 32.31 11.21 30.6 11.21 22.95C11.21 20.77 11.99 18.99 13.27 17.59C13.06 17.09 12.38 15.06 13.47 12.31C13.47 12.31 15.15 11.77 18.97 14.36C20.57 13.91 22.28 13.69 23.99 13.68C25.7 13.69 27.42 13.91 29.02 14.36C32.84 11.77 34.51 12.31 34.51 12.31C35.61 15.06 34.93 17.09 34.72 17.59C36.01 18.99 36.78 20.77 36.78 22.95C36.78 30.63 32.09 32.3 27.63 32.8C28.34 33.41 28.98 34.62 28.98 36.47C28.98 39.12 28.96 41.26 28.96 42.02C28.96 42.56 29.32 43.18 30.34 42.98C38.26 40.33 44 32.84 44 24C44 12.95 35.05 4 24 4Z"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">GitHub</span>
+            </div>
+
+            <!-- 10. Docker -->
+            <div class="skill-item" data-skill="Docker" title="Docker" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M44.5 22.5C43.5 22.4 41 23.2 39.8 24.6C39.2 23.2 37.8 22.3 36.2 22.3C35.9 22.3 35.6 22.3 35.3 22.4C34.4 19.3 31.6 17 28.2 17H7.5C6.1 17 5 18.1 5 19.5V26.8C5 34.3 11.2 40.5 18.8 40.5C28.5 40.5 36.5 34 38.8 25C40.6 25.1 42.6 24.3 44.5 22.5Z" fill="#2496ED"/>
+                  <rect x="11" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="16.5" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="22" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="16.5" y="16" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="22" y="16" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="27.5" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Docker</span>
+            </div>
+
+            <!-- 11. Linux -->
+            <div class="skill-item" data-skill="Linux" title="Linux" tabindex="0">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <ellipse cx="24" cy="27" rx="14" ry="15" fill="#1A1A1A"/>
+                  <ellipse cx="24" cy="29" rx="9" ry="11" fill="#FFFFFF"/>
+                  <circle cx="24" cy="14" r="9" fill="#1A1A1A"/>
+                  <ellipse cx="21" cy="12" rx="2" ry="3" fill="#FFFFFF"/>
+                  <ellipse cx="27" cy="12" rx="2" ry="3" fill="#FFFFFF"/>
+                  <circle cx="21.5" cy="12.5" r="1.2" fill="#000000"/>
+                  <circle cx="26.5" cy="12.5" r="1.2" fill="#000000"/>
+                  <path d="M20 15C20 15 24 17 28 15C27 18 25 19 24 19C23 19 21 18 20 15Z" fill="#FFA500"/>
+                  <ellipse cx="16" cy="41" rx="6" ry="2.5" fill="#FFA500"/>
+                  <ellipse cx="32" cy="41" rx="6" ry="2.5" fill="#FFA500"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" role="tooltip">Linux</span>
+            </div>
+          </div>
+          <div class="marquee-content" aria-hidden="true">
+
+            <!-- 1. HTML5 -->
+            <div class="skill-item" data-skill="HTML5" title="HTML5" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M9 4L12.5 39.5L24 43L35.5 39.5L39 4H9Z" fill="#E44D26"/>
+                  <path d="M24 7.5V39.6L32.6 37L35.6 7.5H24Z" fill="#F16529"/>
+                  <path d="M24 15.5H16.8L17.3 21.5H24V27.5H17.8L17.4 23.5H13.8L14.6 31.8L24 34.4V34.5L33.4 31.8L34.4 21.5H24V15.5ZM24 21.5V15.5H34.9L34.4 21.5H24Z" fill="#EBEBEB"/>
+                  <path d="M24 15.5V21.5H29.7L29.3 26.2L24 27.6V33.6L31.6 31.5L32.6 21.5H24V15.5Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >HTML5</span>
+            </div>
+
+            <!-- 2. CSS3 -->
+            <div class="skill-item" data-skill="CSS3" title="CSS3" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M9 4L12.5 39.5L24 43L35.5 39.5L39 4H9Z" fill="#1572B6"/>
+                  <path d="M24 7.5V39.6L32.6 37L35.6 7.5H24Z" fill="#33A9DC"/>
+                  <path d="M24 15.5H16.8L17.3 21.5H24V27.5H17.8L17.4 23.5H13.8L14.6 31.8L24 34.4V34.5L33.4 31.8L34.7 15.5H24ZM24 27.5V33.6L29.3 32.2L29.7 27.5H24Z" fill="#EBEBEB"/>
+                  <path d="M24 15.5V21.5H30.2L29.8 26.2L24 27.6V33.6L31.6 31.5L32.7 15.5H24Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >CSS3</span>
+            </div>
+
+            <!-- 3. JavaScript -->
+            <div class="skill-item" data-skill="JavaScript" title="JavaScript" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="none">
+                  <rect width="48" height="48" rx="6" fill="#F7DF1E"/>
+                  <path d="M14.5 38.5L18.8 35.8C19.9 37.8 21.2 39.1 23.7 39.1C26.1 39.1 27.5 37.9 27.5 35.5V23.5H32.8V35.6C32.8 41 29.5 43.5 24 43.5C18.8 43.5 15.7 40.8 14.5 38.5ZM33.2 38.2L37.5 35.6C38.7 37.7 40.5 39.2 43.2 39.2C45.5 39.2 47 38.1 47 36.4C47 34.4 45.4 33.6 42.6 32.3L41.1 31.6C36.8 29.7 33.9 27.4 33.9 22.8C33.9 18.4 37.4 15 42.7 15C46.8 15 49.5 16.9 51 20.2L46.8 22.8C45.8 21.1 44.5 20.1 42.6 20.1C40.6 20.1 39.3 21.1 39.3 22.6C39.3 24.3 40.6 25.1 43.2 26.2L44.7 26.9C49.6 29 52.6 31.3 52.6 36.1C52.6 41.2 48.6 44 43.1 44C38.1 44 34.6 41.3 33.2 38.2Z" transform="translate(-8, -4) scale(0.88)" fill="#000000"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >JavaScript</span>
+            </div>
+
+            <!-- 4. React -->
+            <div class="skill-item" data-skill="React" title="React" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="32" height="32" fill="none">
+                  <ellipse cx="24" cy="24" rx="7" ry="19" stroke="#61DAFB" stroke-width="2.4" transform="rotate(30 24 24)"/>
+                  <ellipse cx="24" cy="24" rx="7" ry="19" stroke="#61DAFB" stroke-width="2.4" transform="rotate(90 24 24)"/>
+                  <ellipse cx="24" cy="24" rx="7" ry="19" stroke="#61DAFB" stroke-width="2.4" transform="rotate(150 24 24)"/>
+                  <circle cx="24" cy="24" r="3.8" fill="#61DAFB"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >React</span>
+            </div>
+
+            <!-- 5. Node.js -->
+            <div class="skill-item" data-skill="Node.js" title="Node.js" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M24 5L41.3 15V35L24 45L6.7 35V15L24 5Z" fill="#339933"/>
+                  <path d="M24 8.5L38.3 16.8V33.2L24 41.5L9.7 33.2V16.8L24 8.5Z" fill="#5FA04E"/>
+                  <path d="M24 17C21.8 17 20 18.8 20 21V29H24V22H26V29H30V21C30 18.8 28.2 17 26 17H24Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Node.js</span>
+            </div>
+
+            <!-- 6. PostgreSQL -->
+            <div class="skill-item" data-skill="PostgreSQL" title="PostgreSQL" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M24 4C13 4 5 12 5 22C5 29.5 9.5 35.8 16 38.5V44L23 40C23.3 40 23.7 40 24 40C35 40 43 32 43 22C43 12 35 4 24 4Z" fill="#4169E1"/>
+                  <path d="M20 16C20 16 26 13 31 18C36 23 34 30 30 33C27 35 24 33 24 33" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="21" cy="21" r="2" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >PostgreSQL</span>
+            </div>
+
+            <!-- 7. MySQL -->
+            <div class="skill-item" data-skill="MySQL" title="MySQL" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="8" fill="#00758F"/>
+                  <path d="M12 28C14 22 20 16 28 16C33 16 37 19 36 24C35 27 31 29 28 29C23 29 20 26 18 31" stroke="#F29111" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="27" cy="20" r="1.8" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >MySQL</span>
+            </div>
+
+            <!-- 8. Firebase -->
+            <div class="skill-item" data-skill="Firebase" title="Firebase" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M9.8 35.6L18.4 19.3L13.7 10.6C13.3 9.8 12.1 9.9 11.8 10.7L9.8 35.6Z" fill="#FFA000"/>
+                  <path d="M25.6 25.1L21.3 16.8C20.9 16.1 19.8 16.2 19.5 17L9.8 35.6L25.6 25.1Z" fill="#F57C00"/>
+                  <path d="M26.2 9.5C25.6 8.8 24.5 9 24.3 9.9L9.8 35.6L24.5 44C25.2 44.4 26 44.2 26.5 43.6L38.2 18.2C38.6 17.3 37.6 16.5 36.8 17.1L26.2 9.5Z" fill="#FFCA28"/>
+                  <path d="M38.2 18.2L26.5 43.6C26 44.2 25.2 44.4 24.5 44L9.8 35.6L24.5 44L38.2 18.2Z" fill="#FFA000"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Firebase</span>
+            </div>
+
+            <!-- 9. GitHub -->
+            <div class="skill-item" data-skill="GitHub" title="GitHub" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="28" height="28" fill="currentColor" class="github-icon-svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4C12.95 4 4 12.95 4 24C4 32.84 9.73 40.34 17.65 42.98C18.65 43.16 19.02 42.55 19.02 42.02C19.02 41.55 19 39.87 19 38.23C13.44 39.44 12.27 35.91 12.27 35.91C11.36 33.6 10.05 32.99 10.05 32.99C8.24 31.75 10.19 31.78 10.19 31.78C12.19 31.92 13.24 33.83 13.24 33.83C15.02 36.88 17.91 36 19.05 35.48C19.23 34.19 19.75 33.31 20.32 32.81C15.88 32.31 11.21 30.6 11.21 22.95C11.21 20.77 11.99 18.99 13.27 17.59C13.06 17.09 12.38 15.06 13.47 12.31C13.47 12.31 15.15 11.77 18.97 14.36C20.57 13.91 22.28 13.69 23.99 13.68C25.7 13.69 27.42 13.91 29.02 14.36C32.84 11.77 34.51 12.31 34.51 12.31C35.61 15.06 34.93 17.09 34.72 17.59C36.01 18.99 36.78 20.77 36.78 22.95C36.78 30.63 32.09 32.3 27.63 32.8C28.34 33.41 28.98 34.62 28.98 36.47C28.98 39.12 28.96 41.26 28.96 42.02C28.96 42.56 29.32 43.18 30.34 42.98C38.26 40.33 44 32.84 44 24C44 12.95 35.05 4 24 4Z"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >GitHub</span>
+            </div>
+
+            <!-- 10. Docker -->
+            <div class="skill-item" data-skill="Docker" title="Docker" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <path d="M44.5 22.5C43.5 22.4 41 23.2 39.8 24.6C39.2 23.2 37.8 22.3 36.2 22.3C35.9 22.3 35.6 22.3 35.3 22.4C34.4 19.3 31.6 17 28.2 17H7.5C6.1 17 5 18.1 5 19.5V26.8C5 34.3 11.2 40.5 18.8 40.5C28.5 40.5 36.5 34 38.8 25C40.6 25.1 42.6 24.3 44.5 22.5Z" fill="#2496ED"/>
+                  <rect x="11" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="16.5" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="22" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="16.5" y="16" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="22" y="16" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                  <rect x="27.5" y="21" width="4.5" height="4" fill="#FFFFFF" opacity="0.9"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Docker</span>
+            </div>
+
+            <!-- 11. Linux -->
+            <div class="skill-item" data-skill="Linux" title="Linux" tabindex="-1">
+              <div class="skill-icon-bubble">
+                <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                  <ellipse cx="24" cy="27" rx="14" ry="15" fill="#1A1A1A"/>
+                  <ellipse cx="24" cy="29" rx="9" ry="11" fill="#FFFFFF"/>
+                  <circle cx="24" cy="14" r="9" fill="#1A1A1A"/>
+                  <ellipse cx="21" cy="12" rx="2" ry="3" fill="#FFFFFF"/>
+                  <ellipse cx="27" cy="12" rx="2" ry="3" fill="#FFFFFF"/>
+                  <circle cx="21.5" cy="12.5" r="1.2" fill="#000000"/>
+                  <circle cx="26.5" cy="12.5" r="1.2" fill="#000000"/>
+                  <path d="M20 15C20 15 24 17 28 15C27 18 25 19 24 19C23 19 21 18 20 15Z" fill="#FFA500"/>
+                  <ellipse cx="16" cy="41" rx="6" ry="2.5" fill="#FFA500"/>
+                  <ellipse cx="32" cy="41" rx="6" ry="2.5" fill="#FFA500"/>
+                </svg>
+              </div>
+              <span class="skill-tooltip" >Linux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Projects (Interactive Illustrated Project Map) -->
+    <section class="projects-section" id="projects">
+      <!-- Floating Compact Center Header -->
+      <div class="map-section-head">
+        <span class="eyebrow-tag">THE THINGS I'VE MADE</span>
+        <h2 class="section-title">Every project has a place.</h2>
+        <p class="section-subtitle">
+          A little map of ideas I've explored, problems I've solved, and things I've built along the way.
+        </p>
+      </div>
+
+      <!-- Full-Screen Interactive City Map Canvas Wrapper -->
+      <div class="project-map-wrapper" id="projectMapWrapper">
+        <!-- Floating Controls: Hint Pill & Zoom Controls -->
+        <div class="map-controls-bar">
+          <div class="map-hint-pill">
+            <span class="hint-pulse"></span>
+            <span class="hint-text">🧭 8 Interactive Projects • Click any pin to explore</span>
+          </div>
+          <div class="map-zoom-buttons">
+            <button class="zoom-btn" id="mapZoomIn" aria-label="Zoom in on map" title="Zoom In">+</button>
+            <button class="zoom-btn" id="mapZoomOut" aria-label="Zoom out on map" title="Zoom Out">−</button>
+            <button class="zoom-btn reset-btn" id="mapReset" aria-label="Reset map view" title="Reset View">⟲</button>
+          </div>
+        </div>
+
+        <!-- Draggable Map Viewport -->
+        <div class="map-viewport" id="mapViewport">
+          <div class="map-canvas" id="mapCanvas">
+            <!-- Illustrated City Map SVG -->
+            <svg class="map-svg" viewBox="0 0 1600 950" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <pattern id="cityGridPattern" width="60" height="60" patternUnits="userSpaceOnUse">
+                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="var(--map-grid-line)" stroke-width="0.8" opacity="0.35"/>
+                </pattern>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+
+              <!-- Map Base -->
+              <rect width="100%" height="100%" fill="var(--map-bg)"/>
+              <rect width="100%" height="100%" fill="url(#cityGridPattern)"/>
+
+              <!-- City Districts / Faint Urban Blocks -->
+              <g class="map-blocks" opacity="0.85">
+                <!-- North-West Block Cluster (Code & Logic Commons) -->
+                <rect x="80" y="70" width="130" height="80" rx="8" fill="var(--map-block)"/>
+                <rect x="230" y="60" width="160" height="90" rx="8" fill="var(--map-block)"/>
+                <rect x="70" y="170" width="110" height="130" rx="8" fill="var(--map-block)"/>
+                <rect x="200" y="170" width="90" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="100" y="320" width="160" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="280" y="300" width="110" height="120" rx="8" fill="var(--map-block)"/>
+
+                <!-- North-Center & Lake Ridge Blocks (Marketing Analytics) -->
+                <rect x="430" y="50" width="120" height="90" rx="8" fill="var(--map-block)"/>
+                <rect x="570" y="60" width="180" height="70" rx="8" fill="var(--map-block)"/>
+                <rect x="420" y="160" width="150" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="600" y="150" width="140" height="120" rx="8" fill="var(--map-block)"/>
+
+                <!-- North-East Innovation District (Media Discovery & RAG) -->
+                <rect x="850" y="60" width="180" height="100" rx="8" fill="var(--map-block)"/>
+                <rect x="1050" y="50" width="140" height="90" rx="8" fill="var(--map-block)"/>
+                <rect x="1210" y="70" width="170" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="880" y="180" width="130" height="140" rx="8" fill="var(--map-block)"/>
+                <rect x="1030" y="160" width="180" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="1230" y="200" width="160" height="120" rx="8" fill="var(--map-block)"/>
+
+                <!-- Central Career & Placement Hub Blocks -->
+                <rect x="360" y="360" width="120" height="140" rx="8" fill="var(--map-block)"/>
+                <rect x="500" y="340" width="150" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="340" y="520" width="130" height="120" rx="8" fill="var(--map-block)"/>
+                <rect x="490" y="470" width="160" height="120" rx="8" fill="var(--map-block)"/>
+
+                <!-- East & Speech AI Horizon Blocks -->
+                <rect x="790" y="360" width="170" height="120" rx="8" fill="var(--map-block)"/>
+                <rect x="980" y="330" width="160" height="130" rx="8" fill="var(--map-block)"/>
+                <rect x="1160" y="350" width="150" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="820" y="500" width="140" height="130" rx="8" fill="var(--map-block)"/>
+                <rect x="980" y="480" width="170" height="140" rx="8" fill="var(--map-block)"/>
+                <rect x="1170" y="480" width="180" height="130" rx="8" fill="var(--map-block)"/>
+
+                <!-- South-West NLP & University Hub Blocks -->
+                <rect x="90" y="520" width="180" height="130" rx="8" fill="var(--map-block)"/>
+                <rect x="70" y="680" width="160" height="120" rx="8" fill="var(--map-block)"/>
+                <rect x="250" y="670" width="170" height="130" rx="8" fill="var(--map-block)"/>
+                <rect x="120" y="820" width="190" height="90" rx="8" fill="var(--map-block)"/>
+                <rect x="330" y="820" width="160" height="80" rx="8" fill="var(--map-block)"/>
+
+                <!-- South-Center Trend & Fandom Analytics Park -->
+                <rect x="510" y="660" width="180" height="120" rx="8" fill="var(--map-block)"/>
+                <rect x="710" y="670" width="140" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="530" y="800" width="160" height="100" rx="8" fill="var(--map-block)"/>
+                <rect x="710" y="800" width="150" height="90" rx="8" fill="var(--map-block)"/>
+
+                <!-- South-East Campus Social & Mobile App Blocks -->
+                <rect x="910" y="660" width="160" height="130" rx="8" fill="var(--map-block)"/>
+                <rect x="1090" y="640" width="180" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="900" y="810" width="170" height="90" rx="8" fill="var(--map-block)"/>
+                <rect x="1090" y="770" width="190" height="110" rx="8" fill="var(--map-block)"/>
+                <rect x="1300" y="640" width="160" height="120" rx="8" fill="var(--map-block)"/>
+                <rect x="1300" y="780" width="170" height="110" rx="8" fill="var(--map-block)"/>
+              </g>
+
+              <!-- Parks & Green Spaces -->
+              <g class="map-parks">
+                <path d="M 40,30 C 120,20 180,60 210,120 C 180,150 90,140 50,110 Z" fill="var(--map-park)"/>
+                <path d="M 680,260 C 760,250 820,290 810,360 C 750,390 690,370 660,320 Z" fill="var(--map-park)"/>
+                <path d="M 430,600 C 510,580 560,630 550,690 C 480,720 420,670 410,630 Z" fill="var(--map-park)"/>
+                <path d="M 1320,80 C 1440,60 1520,120 1500,220 C 1420,240 1340,180 1310,120 Z" fill="var(--map-park)"/>
+                <path d="M 850,710 C 920,690 960,740 940,810 C 880,830 830,790 840,740 Z" fill="var(--map-park)"/>
+              </g>
+
+              <!-- Waterways & River with Bridges -->
+              <g class="map-water">
+                <path d="M -20,380 C 260,340 380,480 620,440 C 820,400 940,240 1140,260 C 1340,280 1480,200 1620,210 L 1620,260 C 1480,250 1340,330 1140,310 C 940,290 820,450 620,490 C 380,530 260,390 -20,430 Z" fill="var(--map-water)" opacity="0.95"/>
+                <path d="M 640,470 C 690,560 670,680 730,780 C 760,830 780,880 770,960 L 730,960 C 740,880 720,830 690,780 C 630,680 650,560 600,470 Z" fill="var(--map-water)" opacity="0.9"/>
+                <ellipse cx="1180" cy="180" rx="70" ry="45" fill="var(--map-water)" opacity="0.95"/>
+              </g>
+
+              <!-- Street Network (Secondary Roads) -->
+              <g class="map-streets" stroke="var(--map-road-sub)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="0" y1="150" x2="1600" y2="150" opacity="0.6"/>
+                <line x1="0" y1="300" x2="1600" y2="300" opacity="0.6"/>
+                <line x1="0" y1="460" x2="1600" y2="460" opacity="0.4"/>
+                <line x1="0" y1="640" x2="1600" y2="640" opacity="0.6"/>
+                <line x1="0" y1="790" x2="1600" y2="790" opacity="0.6"/>
+                <line x1="210" y1="0" x2="210" y2="950" opacity="0.6"/>
+                <line x1="410" y1="0" x2="410" y2="950" opacity="0.6"/>
+                <line x1="770" y1="0" x2="770" y2="950" opacity="0.5"/>
+                <line x1="1010" y1="0" x2="1010" y2="950" opacity="0.6"/>
+                <line x1="1200" y1="0" x2="1200" y2="950" opacity="0.6"/>
+              </g>
+
+              <!-- Main Flowing Avenues & Arteries -->
+              <g class="map-highways" stroke="var(--map-road-main)" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 0,220 C 350,260 520,120 820,180 C 1120,240 1280,480 1600,520"/>
+                <path d="M 80,950 C 260,780 480,680 720,540 C 980,380 1220,310 1520,110"/>
+                <path d="M 610,0 C 600,320 620,620 590,950"/>
+              </g>
+
+              <!-- Bridges crossing the River -->
+              <g class="map-bridges" stroke="var(--map-bridge)" stroke-width="12" stroke-linecap="square">
+                <line x1="605" y1="440" x2="635" y2="490"/>
+                <line x1="700" y1="520" x2="735" y2="560"/>
+                <line x1="590" y1="440" x2="615" y2="480"/>
+              </g>
+
+              <!-- Muted Map Landmark Labels -->
+              <g class="map-labels" font-family="var(--font-display)" font-size="10" font-weight="700" letter-spacing="1.5" fill="var(--map-label)">
+                <text x="140" y="110">CODE COMMONS</text>
+                <text x="610" y="110">LAKE RIDGE</text>
+                <text x="1100" y="120">MEDIA BAY</text>
+                <text x="490" y="400">CAREER COMMONS</text>
+                <text x="960" y="410">SPEECH LABS</text>
+                <text x="150" y="730">NLP GROVE</text>
+                <text x="610" y="730">TREND PARK</text>
+                <text x="1100" y="730">CAMPUS SOCIAL</text>
+              </g>
+            </svg>
+
+            <!-- 8 Interactive Project Location Pins Layer -->
+            <div class="map-pins-layer" id="mapPinsLayer">
+              <!-- Pin 1: LogicLens (Top-Left - Featured) -->
+              <div class="map-pin-anchor is-featured" style="left: 18%; top: 21%;" data-project-id="logiclens">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-coral">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">🔍</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open LogicLens project details">
+                  <span class="label-star">⭐</span>
+                  <span class="label-title">LogicLens</span>
+                </button>
+              </div>
+
+              <!-- Pin 2: CampaignIQ (Top-Center - Featured) -->
+              <div class="map-pin-anchor is-featured" style="left: 48%; top: 25%;" data-project-id="campaigniq">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-sun">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">📊</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open CampaignIQ project details">
+                  <span class="label-star">⭐</span>
+                  <span class="label-title">CampaignIQ</span>
+                </button>
+              </div>
+
+              <!-- Pin 3: WatchMate (Top-Right - Featured) -->
+              <div class="map-pin-anchor is-featured" style="left: 80%; top: 21%;" data-project-id="watchmate">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-indigo">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">🎬</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open WatchMate project details">
+                  <span class="label-star">⭐</span>
+                  <span class="label-title">WatchMate</span>
+                </button>
+              </div>
+
+              <!-- Pin 4: Placement Management Platform (Mid-Left) -->
+              <div class="map-pin-anchor" style="left: 20%; top: 48%;" data-project-id="placement">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-sky">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">🎓</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open Placement Management Platform project details">
+                  <span class="label-dot dot-sky"></span>
+                  <span class="label-title">Placement Platform</span>
+                </button>
+              </div>
+
+              <!-- Pin 5: PersonaPath (Center-Right - Featured) -->
+              <div class="map-pin-anchor is-featured" style="left: 77%; top: 48%;" data-project-id="personapath">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-rose">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">🎙️</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open PersonaPath project details">
+                  <span class="label-star">⭐</span>
+                  <span class="label-title">PersonaPath</span>
+                </button>
+              </div>
+
+              <!-- Pin 6: University Assistant (Bottom-Left) -->
+              <div class="map-pin-anchor" style="left: 18%; top: 76%;" data-project-id="university-assistant">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-lilac">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">🏛️</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open University Assistant project details">
+                  <span class="label-dot dot-lilac"></span>
+                  <span class="label-title">University LLM</span>
+                </button>
+              </div>
+
+              <!-- Pin 7: K-Pop Trend Analysis (Bottom-Center) -->
+              <div class="map-pin-anchor" style="left: 48%; top: 74%;" data-project-id="kpop-trends">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-mint">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">🎵</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open K-Pop Trend Analysis project details">
+                  <span class="label-dot dot-mint"></span>
+                  <span class="label-title">K-Pop Trends</span>
+                </button>
+              </div>
+
+              <!-- Pin 8: Unimingle (Bottom-Right) -->
+              <div class="map-pin-anchor" style="left: 80%; top: 75%;" data-project-id="unimingle">
+                <div class="pin-ground-shadow"></div>
+                <div class="map-pin pin-coral">
+                  <div class="pin-pulse-ring"></div>
+                  <div class="pin-head">
+                    <span class="pin-icon">📱</span>
+                  </div>
+                  <div class="pin-tip"></div>
+                </div>
+                <button class="pin-label-pill" aria-label="Open Unimingle project details">
+                  <span class="label-dot dot-coral"></span>
+                  <span class="label-title">Unimingle App</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glassmorphism Project Overview Popup -->
+      <div class="project-modal-backdrop" id="projectOverviewBackdrop" aria-hidden="true">
+        <div class="project-preview-modal glass-panel" id="projectOverviewModal" role="dialog" aria-modal="true" aria-labelledby="overviewTitle">
+          <button class="modal-close-btn" id="overviewCloseBtn" aria-label="Close project preview">✕</button>
+
+          <div class="modal-header">
+            <div class="badge-cluster">
+              <span class="modal-badge" id="overviewCategory">CATEGORY</span>
+              <span class="featured-tag" id="overviewFeaturedBadge" style="display: none;">⭐ FEATURED</span>
+            </div>
+            <span class="modal-metric" id="overviewMetric">Architecture</span>
+          </div>
+
+          <h3 class="modal-title" id="overviewTitle">Project Title</h3>
+          <p class="modal-subtitle" id="overviewSubtitle">Subtitle / Tagline</p>
+
+          <p class="modal-desc" id="overviewSummary">Concise project summary goes here.</p>
+
+          <!-- The Problem Solved Callout -->
+          <div class="modal-problem-box">
+            <span class="problem-label">THE PROBLEM SOLVED</span>
+            <p class="problem-text" id="overviewProblem">Problem statement goes here.</p>
+          </div>
+
+          <!-- Key Implementation Highlights -->
+          <div class="modal-features-block">
+            <span class="features-label">KEY IMPLEMENTATION</span>
+            <ul class="features-list" id="overviewFeatures">
+              <!-- Dynamically populated features -->
+            </ul>
+          </div>
+
+          <div class="modal-tags" id="overviewTags">
+            <!-- Dynamically populated tech tags -->
+          </div>
+
+          <!-- Modal Actions Bar with Verified GitHub Link -->
+          <div class="modal-actions">
+            <!-- GitHub Button (Always Present) -->
+            <a href="#" class="modal-btn-github" id="overviewGithubBtn" target="_blank" rel="noopener noreferrer" aria-label="View repository on GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span id="overviewGithubLabel">GitHub Repo</span>
+            </a>
+
+            <!-- View Full Details Action -->
+            <button class="modal-btn-primary" id="overviewDetailsBtn">
+              <span>View Full Details</span>
+              <span class="btn-arrow">↗</span>
+            </button>
+
+            <!-- Live Demo Button (Only when verified URL exists) -->
+            <a href="#" class="modal-btn-demo" id="overviewDemoBtn" target="_blank" rel="noopener noreferrer" style="display: none;">
+              <span>Live Demo</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+
+            <button class="modal-btn-dismiss" id="overviewDismissBtn">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glassmorphism Full Project Detail Modal (Expanded Reader) -->
+      <div class="project-modal-backdrop detail-backdrop" id="projectDetailBackdrop" aria-hidden="true">
+        <div class="project-detail-modal glass-panel" id="projectDetailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+          <button class="modal-close-btn" id="detailCloseBtn" aria-label="Close detailed view">✕</button>
+
+          <div class="detail-header">
+            <div class="badge-cluster">
+              <span class="modal-badge" id="detailCategory">CATEGORY</span>
+              <span class="featured-tag" id="detailFeaturedBadge" style="display: none;">⭐ FEATURED PROJECT</span>
+            </div>
+            <h2 class="detail-title" id="detailTitle">Project Title</h2>
+            <p class="detail-subtitle" id="detailSubtitle">Subtitle & Scope</p>
+          </div>
+
+          <div class="detail-body">
+            <!-- Problem Statement -->
+            <div class="detail-section">
+              <h4 class="detail-section-head">
+                <span class="sec-icon">🎯</span>
+                <span>THE PROBLEM STATEMENT</span>
+              </h4>
+              <p class="detail-text" id="detailProblem"></p>
+            </div>
+
+            <!-- System Architecture & What Was Built -->
+            <div class="detail-section">
+              <h4 class="detail-section-head">
+                <span class="sec-icon">⚙️</span>
+                <span>SYSTEM ARCHITECTURE & WHAT I BUILT</span>
+              </h4>
+              <p class="detail-text" id="detailArchitecture"></p>
+            </div>
+
+            <!-- Key Implementation Features -->
+            <div class="detail-section">
+              <h4 class="detail-section-head">
+                <span class="sec-icon">✨</span>
+                <span>KEY IMPLEMENTATION & CAPABILITIES</span>
+              </h4>
+              <ul class="detail-features-grid" id="detailFeatures">
+                <!-- Populated dynamically -->
+              </ul>
+            </div>
+
+            <!-- Complete Technology Stack -->
+            <div class="detail-section">
+              <h4 class="detail-section-head">
+                <span class="sec-icon">🛠️</span>
+                <span>COMPLETE TECHNOLOGY STACK</span>
+              </h4>
+              <div class="skills-pill-group" id="detailTechStack">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Verified GitHub Repository Card -->
+            <div class="detail-repo-card">
+              <div class="repo-card-info">
+                <div class="repo-card-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="repo-card-label">VERIFIED GITHUB REPOSITORY</span>
+                  <h4 class="repo-card-title" id="detailRepoName">manyaagarwal23/repo</h4>
+                  <p class="repo-card-desc" id="detailRepoDesc">Repository description</p>
+                </div>
+              </div>
+              <a href="#" class="modal-btn-github-large" id="detailRepoLink" target="_blank" rel="noopener noreferrer">
+                <span>Open Repository</span>
+                <span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="detail-footer">
+            <span class="detail-hint">✦ Click anywhere outside or press Esc to return to the map</span>
+            <button class="modal-btn-primary" id="detailDismissBtn">Back to Map</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Final Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-bg-overlay" aria-hidden="true"></div>
+      <div class="contact-inner-container">
+        <!-- Headline -->
+        <h2 class="contact-headline">“Every good thing starts with a hello.”</h2>
+        <p class="contact-subhead">Feel free to connect, collaborate, or explore my work:</p>
+
+        <!-- 5 Interactive 3D-Style Rounded-Square Buttons -->
+        <div class="contact-3d-grid">
+          <!-- 1. LinkedIn -->
+          <a href="https://www.linkedin.com/in/manya-agarwal-0605492b0/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="btn-3d btn-3d-linkedin" aria-label="Connect with Manya Agarwal on LinkedIn">
+            <div class="btn-3d-top">
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.4 9.74v-8.37H5.06v8.37z"/>
+                </svg>
+              </div>
+              <span class="btn-label">LinkedIn</span>
+            </div>
+          </a>
+
+          <!-- 2. GitHub -->
+          <a href="https://github.com/manyaagarwal23" target="_blank" rel="noopener noreferrer" class="btn-3d btn-3d-github" aria-label="Explore Manya Agarwal's GitHub repositories">
+            <div class="btn-3d-top">
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                  <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                </svg>
+              </div>
+              <span class="btn-label">GitHub</span>
+            </div>
+          </a>
+
+          <!-- 3. Gmail -->
+          <a href="mailto:manyagarwal.20@gmail.com" class="btn-3d btn-3d-gmail" aria-label="Send email to Manya Agarwal (manyagarwal.20@gmail.com)">
+            <div class="btn-3d-top">
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                  <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+                </svg>
+              </div>
+              <span class="btn-label">Gmail</span>
+            </div>
+          </a>
+
+          <!-- 4. Instagram -->
+          <a href="https://www.instagram.com/iamanya_9719/" target="_blank" rel="noopener noreferrer" class="btn-3d btn-3d-instagram" aria-label="Follow Manya Agarwal on Instagram (@iamanya_9719)">
+            <div class="btn-3d-top">
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <span class="btn-label">Instagram</span>
+            </div>
+          </a>
+
+          <!-- 5. Portfolio -->
+          <a href="#home" class="btn-3d btn-3d-portfolio" aria-label="Back to Portfolio Top">
+            <div class="btn-3d-top">
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <span class="btn-label">Portfolio</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fixed Pill-Shaped Floating Navigation Bar (Bottom Center) -->
+  <nav class="floating-nav-bar" id="floatingNav" aria-label="Main Navigation">
+    <div class="nav-pill-container">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#about" class="nav-link" data-section="about">About</a>
+      <a href="#work" class="nav-link" data-section="work">Work</a>
+      <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+      <a href="#contact" class="nav-link nav-link-contact" data-section="contact">Contact →</a>
+      <div class="nav-slider-indicator" id="navIndicator"></div>
+    </div>
+  </nav>
+
+  <!-- Interactive Cursor-Following Mascot Logic -->
+  <script src="mascot.js" defer></script>
+  <!-- Core Portfolio Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
