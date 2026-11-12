@@ -22,35 +22,47 @@
   // 1. Theme Management (Day / Night Mode)
   // =========================================================
 
+  const THEME_STORAGE_KEY = 'manya-theme-pref';
+
   function getPreferredTheme() {
     const params = new URLSearchParams(window.location.search);
     const queryTheme = params.get('theme');
     if (queryTheme === 'light' || queryTheme === 'dark') return queryTheme;
-    const saved = localStorage.getItem('manya-theme');
-    if (saved) return saved;
-    return 'light'; // Default to light (Day) theme
+    const saved = localStorage.getItem(THEME_STORAGE_KEY);
+    if (saved === 'light' || saved === 'dark') return saved;
+    return 'dark'; // Default to dark (Night) theme
   }
 
-  function applyTheme(theme) {
+  function applyTheme(theme, { persist = false, track = false } = {}) {
     html.setAttribute('data-theme', theme);
-    localStorage.setItem('manya-theme', theme);
+
+    if (persist) {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    }
 
     if (themeLabel) {
       themeLabel.textContent = theme === 'dark' ? 'Night' : 'Day';
     }
 
-    // Ping backend for interaction tracking
-    fetch('/api/toggle-theme', { method: 'POST' }).catch(() => {});
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === 'dark' ? '#090F1C' : '#FFF8EC');
+    }
+
+    if (track) {
+      // Ping backend only when user explicitly toggles theme
+      fetch('/api/toggle-theme', { method: 'POST' }).catch(() => {});
+    }
   }
 
-  // Apply on initial load
+  // Apply on initial load (defaults to Night mode without locking localStorage)
   applyTheme(getPreferredTheme());
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme') || 'light';
+      const current = html.getAttribute('data-theme') || 'dark';
       const next = current === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
+      applyTheme(next, { persist: true, track: true });
     });
   }
 
@@ -239,7 +251,7 @@
   });
 
   // =========================================================
-  // 5. Interactive Project Map: Data, Pins & Preview Modal
+  // 5. Interactive Project Map: Data, Filters, Pins & Modals
   // =========================================================
 
   const DEFAULT_GITHUB_PROFILE = 'https://github.com/manyaagarwal23?tab=repositories';
@@ -248,234 +260,467 @@
     'logiclens': {
       id: 'logiclens',
       title: 'LogicLens',
-      subtitle: 'AI-Powered Code Dependency Analyzer',
-      category: 'AI / DEVELOPER TOOLS',
+      subtitle: 'X-ray vision for unfamiliar codebases.',
+      category: 'AI & DEVELOPER TOOLS',
       featured: true,
-      metric: 'AST Graph & Impact AI',
-      summary: 'An AI-powered platform that helps developers understand complex codebases, explore dependencies, search code using natural-language queries, and analyse the impact of code changes.',
-      problem: 'Navigating large, unfamiliar, or legacy codebases is cognitively demanding and error-prone. Developers struggle to trace multi-file dependencies, understand downstream side effects before modifying code, and identify high-risk architectural hotspots.',
-      architecture: 'Engineered an end-to-end code intelligence pipeline using Tree-sitter for multi-language Abstract Syntax Tree (AST) extraction, Neo4j for persistent dependency graphing, ChromaDB for semantic vector embeddings, and CrewAI multi-agent orchestration for natural-language query resolution and What-If impact simulation.',
+      metric: 'AST Graph + Impact AI',
+      role: 'Team Project • UI/UX Design & VS Code-Inspired Frontend',
+      summary: 'Reads multi-language source repositories and turns them into an interactive dependency graph with natural-language code search and streamed "what-if" impact reports.',
+      problem: 'Jumping into a big or legacy repo usually means hours of Ctrl+F guessing which files call which—and hoping changing one function doesn’t quietly break three services.',
+      standout: 'Maps frontend-to-backend API bridges across 6 languages (Python, JS/TS, Java, Go, C++) and runs a 3-agent CrewAI blast-radius check before you commit a change.',
+      architecture: 'Uses Tree-sitter to extract files, classes, functions, and API routes into a Neo4j graph alongside ChromaDB semantic embeddings, served through a Flask + vis-network interface inspired by VS Code.',
       features: [
-        'Interactive dependency graphs for files, classes, and functions rendered with vis.js',
-        'Semantic code search powered by natural-language query embeddings in ChromaDB',
-        'AI-powered “What-If” impact analysis to simulate ripple effects before code commits',
-        'Git hotspot analysis and automated code vulnerability detection'
+        'Interactive file, class, and function dependency graph powered by Neo4j and vis-network',
+        'Natural-language semantic code search indexed locally in ChromaDB',
+        'Streamed CrewAI "what-if" blast-radius reports for any target function',
+        'Git churn hotspots plus basic hardcoded-secret and SQL-injection pattern checks'
       ],
-      techStack: ['Python', 'Flask', 'Tree-sitter', 'Neo4j', 'ChromaDB', 'CrewAI', 'LLaMA', 'HTML', 'CSS', 'JavaScript', 'vis.js'],
+      techStack: ['Python', 'Flask', 'Tree-sitter', 'Neo4j', 'ChromaDB', 'CrewAI', 'Groq', 'JavaScript', 'Tailwind CSS', 'vis-network'],
       githubUrl: 'https://github.com/manyaagarwal23/LogicLens-Code-Dependency-Analyzer',
-      githubLabel: 'View LogicLens on GitHub',
       repoName: 'manyaagarwal23/LogicLens-Code-Dependency-Analyzer',
-      repoDesc: 'AI-Powered Code Dependency Analyzer with interactive graph exploration, AST parsing, and impact simulation.',
-      demoUrl: null
+      repoDesc: 'Local-first code intelligence tool mapping repositories into Neo4j graphs, ChromaDB embeddings, and CrewAI impact reports.',
+      demoUrl: 'https://shivin4.github.io/logiclens/'
+    },
+    'skillora': {
+      id: 'skillora',
+      title: 'SkillOra',
+      subtitle: 'Build your verified work ledger once. Tailor every resume with receipts.',
+      category: 'AGENTIC AI & CAREER TECH',
+      featured: true,
+      metric: 'Verified Fact Ledger',
+      role: 'Team of 4 • Owned Profile Builder, CrewAI IngestFlow & /sources /verify UI',
+      summary: 'An agentic AI career workspace that pulls real proof from your GitHub repos, PDFs, and notes into a fact ledger, tailors resumes to any job description, and explains your ATS match score.',
+      problem: 'Most AI resume builders happily invent fake numbers and buzzwords—which looks good on paper until an interviewer asks you to explain a bullet you never actually did.',
+      standout: 'Every generated bullet has to cite a verified fact ID with a quoted source span (checked by a Google ADK verifier callback), and the backend gracefully falls back to deterministic rules if Gemini is offline.',
+      architecture: 'Next.js workspace backed by FastAPI and PostgreSQL (with automatic SQLite fallback). CrewAI flows handle repo/document ingestion and JD parsing, RapidFuzz + n-gram cosine run 3-tier matching, and fpdf2/python-docx export verified resumes.',
+      features: [
+        'Multimodal ingestion from GitHub repos, PDFs, DOCX, PPTX, and raw notes into a quoted-span fact ledger',
+        '3-tier JD requirement matcher (exact, fuzzy token set, and cosine similarity)',
+        'Google ADK tailoring agent + verifier guard that blocks ungrounded claims',
+        'Explainable ATS-style score breakdown and interactive Coordinator chat drawer'
+      ],
+      techStack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'CrewAI', 'Google ADK', 'Gemini', 'PostgreSQL', 'RapidFuzz', 'fpdf2', 'Docker'],
+      githubUrl: 'https://github.com/manyaagarwal23/skillora',
+      repoName: 'manyaagarwal23/skillora',
+      repoDesc: 'Agentic AI resume intelligence & job-readiness platform built around a verifiable fact ledger.',
+      demoUrl: 'https://skillora-frontend-1w3w.onrender.com/'
     },
     'campaigniq': {
       id: 'campaigniq',
       title: 'CampaignIQ',
-      subtitle: 'Marketing Analytics Dashboard & What-If Simulator',
+      subtitle: 'A 3-page Power BI command center with live budget what-if math.',
       category: 'BUSINESS INTELLIGENCE',
       featured: true,
-      metric: '3-Page BI Suite',
-      summary: 'A three-page interactive Power BI dashboard for monitoring marketing performance, comparing campaigns and channels, and exploring budget scenarios.',
-      problem: 'Marketing leaders and growth managers face fragmented performance data across multi-channel campaigns, making it difficult to pinpoint return on ad spend (ROAS) drivers and simulate future budget reallocations with financial confidence.',
-      architecture: 'Constructed an executive-ready three-page business intelligence suite in Power BI backed by relational SQL and normalized Excel schemas, featuring dynamic DAX measure hierarchies, spend-to-revenue correlation models, and parametric What-If scenario forecasting.',
+      metric: '3-Page BI + What-If',
+      role: 'Solo Project • Data Modeling, DAX & Dashboard UX',
+      summary: 'A three-page interactive Power BI dashboard built to track marketing spend, revenue, ROAS, CTR, conversion rate, and CPA across campaigns, products, and channels.',
+      problem: 'Growth and marketing teams get stuck bouncing between raw spreadsheets without a quick way to spot which channel is burning cash—or what happens if they shift budget around.',
+      standout: 'Includes a live Budget Scenario Simulator built with DAX What-If parameters so you can dial spend up or down and immediately see projected revenue, ROAS, and net impact.',
+      architecture: 'Structured Excel campaign data into a clean Power BI reporting model with custom DAX KPI measures, cross-filtering slicers (category, product, channel, date), and a three-view storytelling flow.',
       features: [
-        'Executive KPIs for ad spend, revenue, ROAS, CTR, conversion rate, and CPA',
-        'Comprehensive multi-channel and campaign performance comparison matrices',
-        'Spend-versus-ROAS analytical scatter and trend trajectory views',
-        'Dynamic budget scenario simulator using DAX What-If parameters for predictive spend allocation'
+        'Executive Overview tracking total spend, revenue, ROAS, CTR, conversion rate, and CPA',
+        'Campaign Intelligence matrix comparing spend vs. ROAS across channels and products',
+        'Budget Scenario Simulator using DAX What-If parameters for spend-shift exploration',
+        'Dynamic filtering by category, product, marketing channel, and campaign window'
       ],
-      techStack: ['Power BI', 'DAX', 'SQL', 'Excel', 'Data Analysis', 'Data Visualization'],
+      techStack: ['Microsoft Power BI', 'DAX', 'Microsoft Excel', 'Data Modeling', 'KPI Design', 'Data Visualization'],
       githubUrl: 'https://github.com/manyaagarwal23/CampaignIQ-PowerBI-Marketing-Analytics',
-      githubLabel: 'View CampaignIQ on GitHub',
       repoName: 'manyaagarwal23/CampaignIQ-PowerBI-Marketing-Analytics',
-      repoDesc: 'Interactive Power BI marketing analytics dashboard featuring multi-channel comparison and DAX What-If budget simulation.',
+      repoDesc: 'Three-page Power BI marketing analytics suite with channel comparison and DAX budget scenario simulation.',
       demoUrl: null
     },
     'watchmate': {
       id: 'watchmate',
       title: 'WatchMate',
-      subtitle: 'AI-Powered Movie & TV Discovery Platform',
-      category: 'FULL-STACK / RAG AI',
+      subtitle: 'Ask by mood, plot, or screenshot—get real titles and where to stream them.',
+      category: 'FULL-STACK & RAG AI',
       featured: true,
-      metric: 'RAG & Multi-Agent',
-      summary: 'A movie and TV discovery platform combining real-time content data, semantic search, mood-based discovery, image-based title identification, and grounded AI recommendations.',
-      problem: 'Streaming discovery is fragmented across siloed services, with keyword-based searches failing to capture nuanced viewer moods, plot descriptions, or screenshots from social media clips.',
-      architecture: 'Full-stack media intelligence platform combining a high-performance FastAPI backend, responsive React client, PostgreSQL with pgvector for high-dimensional semantic search, Voyage AI embeddings, Groq Vision for frame analysis, and CrewAI multi-agent comparison workflows.',
+      metric: 'RAG + Vision + Watchie',
+      role: 'Solo Build • Full-Stack, pgvector RAG & Product UI',
+      summary: 'A movie and TV discovery app combining live TMDB catalog data, natural-language mood search, screenshot-to-title identification, Watch Later lists, and Watchie—a grounded AI movie buddy.',
+      problem: 'Standard search bars fall flat when you want "a cozy mystery without gore," only remember a single movie frame from a reel, or just want to know which Indian OTT platform actually streams it.',
+      standout: 'Strict grounding rule: Watchie and CrewAI only recommend titles resolved against live TMDB and pgvector records—and if an external API fails, it tells you honestly instead of making up fake movies or OTT links.',
+      architecture: 'Dockerized React + TypeScript frontend talking to a FastAPI backend and PostgreSQL 17 with pgvector (HNSW index on Voyage embeddings), Groq text + vision models, and selective CrewAI orchestration.',
       features: [
-        'TMDB integration for live movie metadata, cast, crew, ratings, similar titles, and streaming providers',
-        'Semantic and mood-based natural language discovery powered by pgvector similarity search',
-        'Image-based scene and movie identification utilizing Groq Vision models',
-        'RAG architecture with PostgreSQL, pgvector, and Voyage AI contextual embeddings',
-        'CrewAI multi-agent recommendation and comparison workflows',
-        'User authentication and personalised Watch Later queue management'
+        'Live TMDB discovery, cast/crew details, similar titles, and India (IN) Where to Watch providers',
+        'Semantic mood and plot search backed by Voyage embeddings and pgvector cosine similarity',
+        'Upload a movie still or scene screenshot to identify the title via Groq Vision',
+        'Watchie conversational assistant + cookie-auth accounts with persistent Watch Later lists'
       ],
-      techStack: ['Python', 'React', 'FastAPI', 'PostgreSQL', 'TMDB API', 'Groq Vision', 'Voyage AI', 'pgvector', 'RAG', 'CrewAI', 'Docker'],
+      techStack: ['React', 'TypeScript', 'Vite', 'FastAPI', 'Python', 'PostgreSQL', 'pgvector', 'Groq Vision', 'Voyage AI', 'CrewAI', 'TMDB API', 'Docker'],
       githubUrl: 'https://github.com/manyaagarwal23/WatchMate',
-      githubLabel: 'View WatchMate on GitHub',
       repoName: 'manyaagarwal23/WatchMate',
-      repoDesc: 'AI-powered movie and TV discovery platform featuring semantic search, Groq Vision, and CrewAI multi-agent workflows.',
+      repoDesc: 'Full-stack movie & TV discovery platform with pgvector RAG, Groq Vision identification, CrewAI, and Watchie.',
       demoUrl: null
     },
-    'placement': {
-      id: 'placement',
-      title: 'Placement Management Intelligence Platform',
-      subtitle: 'Campus Recruitment & Pipeline Analytics',
-      category: 'FULL-STACK PLATFORM',
-      featured: false,
-      metric: 'Relational Intelligence',
-      summary: 'A full-stack platform that centralises placement data for students, companies, jobs, applications, interviews, offers, and skills.',
-      problem: 'University placement departments face heavy administrative overhead managing decentralized spreadsheets, tracking asynchronous candidate interview rounds, and uncovering why students fail specific technical assessment funnels.',
-      architecture: 'Architected with a strictly normalized PostgreSQL relational schema enforcing referential integrity and optimized indexes, decoupled Express.js RESTful API microservices, and a modern React dashboard UI.',
+    'disaster-hub': {
+      id: 'disaster-hub',
+      title: 'Disaster Response Intelligence Hub',
+      subtitle: 'Onboard onto massive humanitarian codebases with live diagrams, not guesswork.',
+      category: 'RAG & DEVELOPER TOOLS',
+      featured: true,
+      metric: 'Code RAG + Mermaid',
+      role: 'Collaborative Build • RAG Interface & Visual Architecture',
+      summary: 'An AI codebase assistant built specifically for the Ushahidi disaster-response PHP platform, pairing semantic code search and LLM reranking with dynamically generated Mermaid.js flowcharts.',
+      problem: 'Crisis-response open-source tools rely on fast volunteer contributions, yet legacy codebases are huge and hard to untangle when you just want to find where a feature lives.',
+      standout: 'Lets you toggle between a "Simple Explanation" and "Technical Details," shows the exact source snippets it pulled from, and draws fresh Mermaid architecture diagrams on the fly.',
+      architecture: 'FastAPI backend indexing the codebase with BAAI/bge-base-en-v1.5 SentenceTransformers into ChromaDB, reranked and explained via LangChain + ChatGroq (Qwen), rendered inside a zero-framework dark glassmorphism UI.',
       features: [
-        'Normalised PostgreSQL relational database with foreign keys, indexes, and constraint integrity',
-        'Advanced SQL-based placement analytics, readiness scoring, and skill gap metrics',
-        'High-throughput REST APIs connecting the database to administrative and student portals',
-        'Interactive analytics dashboard for readiness scoring, skill matching, recruitment funnel drop-offs, and hiring bottleneck detection'
+        'Semantic code search using SentenceTransformers (bge-base-en-v1.5) and ChromaDB',
+        'LangChain + Groq LLM reranking with dual Simple vs. Technical explanation modes',
+        'Auto-generated Mermaid.js flowcharts illustrating retrieved code paths',
+        'Expandable source-code evidence cards, Pytest suite, and GitHub Actions CI'
       ],
-      techStack: ['PostgreSQL', 'SQL', 'Express.js', 'React', 'REST APIs', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/manyaagarwal23/placement-management-platform',
-      githubLabel: 'View Placement Platform on GitHub',
-      repoName: 'manyaagarwal23/placement-management-platform',
-      repoDesc: 'Full-stack campus placement management intelligence platform with normalized relational PostgreSQL database.',
+      techStack: ['Python', 'FastAPI', 'ChromaDB', 'SentenceTransformers', 'LangChain', 'Groq', 'HTML5', 'CSS3', 'JavaScript', 'Mermaid.js', 'Pytest'],
+      githubUrl: 'https://github.com/manyaagarwal23/disaster-response-intelligence-repo-hub',
+      repoName: 'manyaagarwal23/disaster-response-intelligence-repo-hub',
+      repoDesc: 'RAG-based codebase assistant for the Ushahidi platform with semantic search, reranking, and Mermaid diagrams.',
       demoUrl: null
     },
     'personapath': {
       id: 'personapath',
       title: 'PersonaPath',
-      subtitle: 'AI-Based Speech & Literacy Assessment System',
-      category: 'MULTI-MODAL AI / AUDIO-VISION',
+      subtitle: 'An AI speaking coach that listens to your voice and reads your delivery.',
+      category: 'MULTIMODAL AI · AUDIO & VISION',
       featured: true,
-      metric: 'Multi-Modal ML',
-      summary: 'An AI-powered system that analyses vocal confidence, pronunciation, speaking pace, facial emotions, and communication patterns from uploaded audio and video recordings.',
-      problem: 'Coaching effective public speaking and literacy is traditionally manual, costly, and subjective. Learners lack access to objective, fine-grained telemetry on phoneme clarity, pitch variation, and non-verbal engagement cues.',
-      architecture: 'Multi-modal ML pipeline combining acoustic feature extraction via Librosa, automatic speech recognition and alignment via Whisper and Wav2Vec2, facial emotion recognition using MobileNetV2 with OpenCV, and sequential confidence classification using LSTM recurrent networks.',
+      metric: 'Audio + Video ML',
+      role: 'Team Project • Multimodal ML & Assessment Pipeline',
+      summary: 'A two-phase multimodal speech and literacy system: Phase 1 helps kids (5–10) with reading speed and pronunciation, while Phase 2 coaches older speakers (10+) on vocal confidence and facial delivery.',
+      problem: 'Speaking coaching is expensive and subjective, while basic speech-to-text tools ignore hesitation, pacing, tone steadiness, and whether your facial expressions match your message.',
+      standout: 'Combines three separate deep-learning signals—Wav2Vec 2.0 phoneme/text alignment, an MFCC-trained 2-layer LSTM confidence model, and MobileNetV2 facial emotion tracking—into one coaching feedback loop.',
+      architecture: 'Decoupled multimodal inference combining Librosa acoustic extraction, Whisper/Wav2Vec 2.0 transcription with Levenshtein alignment, OpenCV + fine-tuned MobileNetV2 on video frames, and LLM-generated coaching tips.',
       features: [
-        'LSTM-based vocal confidence, speech rate, and pause duration analysis',
-        'Facial emotion recognition and expressive engagement tracking using MobileNetV2 and OpenCV',
-        'Pronunciation and literacy assessment with granular phoneme-level feedback',
-        'Comprehensive dashboard displaying confidence scores, emotion breakdowns, vocal cadence metrics, and AI coaching insights'
+        'Phase 1 Literacy Coach: WPM reading speed, hesitation detection, and pronunciation alignment',
+        'Phase 2 Presentation Pro: LSTM vocal confidence scoring from MFCC, delta, and pitch features',
+        'Frame-by-frame facial emotion analysis using OpenCV and fine-tuned MobileNetV2',
+        'Actionable, personalized speaking feedback dashboard'
       ],
-      techStack: ['Python', 'TensorFlow/Keras', 'OpenCV', 'Librosa', 'Whisper', 'Wav2Vec2', 'MobileNetV2', 'Flask', 'Gradio', 'Hugging Face', 'HTML', 'CSS', 'JavaScript'],
+      techStack: ['Python', 'TensorFlow', 'Keras', 'Wav2Vec 2.0', 'Whisper', 'MobileNetV2', 'LSTM', 'OpenCV', 'Librosa', 'Gradio', 'Hugging Face'],
       githubUrl: 'https://github.com/manyaagarwal23/PersonaPath-Literacy-Speech-Assessment',
-      githubLabel: 'View PersonaPath on GitHub',
       repoName: 'manyaagarwal23/PersonaPath-Literacy-Speech-Assessment',
-      repoDesc: 'AI-based speech and literacy assessment analyzing vocal confidence, pronunciation, and facial emotions.',
+      repoDesc: 'Multimodal speech & literacy assessment combining Wav2Vec 2.0, LSTM vocal confidence, and MobileNetV2 emotion analysis.',
+      demoUrl: 'https://personapath-ai.vercel.app'
+    },
+    'cjp-discourse': {
+      id: 'cjp-discourse',
+      title: 'CJP Online Discourse Analysis',
+      subtitle: 'Testing whether social media really traps everyone in sealed echo chambers.',
+      category: 'DATA SCIENCE & NETWORK NLP',
+      featured: false,
+      metric: '86.11% Validated Acc',
+      role: 'Research & Analytics Build • Pipeline, Stance Validation & Network Viz',
+      summary: 'A cross-platform computational study of 150 Reddit posts, 2,329 comments, and multi-period X (Twitter) data around the CJP–NEET protest—tracking communities, sentiment, stance, and cross-side replies.',
+      problem: 'People often label any online cluster an "echo chamber" without actually measuring whether opposing sides talk to each other or how interaction changes from Before → Peak → After.',
+      standout: 'Measured Krackhardt E-I indices alongside manual-validated stance mixing (N=180, 86.11% accuracy), finding that over 64% (X) and 70% (Reddit) of Anti-CJP outgoing replies targeted Pro-CJP users directly.',
+      architecture: '9-stage reproducible Python pipeline: ingestion & cleaning, directed mention/reply graphs, Louvain community detection (Q=0.89 Reddit, Q=0.75 X), VADER sentiment + Dunn post-hoc tests, TF-IDF + Logistic Regression stance model, and PyVis graphs.',
+      features: [
+        'Louvain community detection across Reddit reply graphs (Q = 0.89) and X mention graphs (Q = 0.75)',
+        'Separates emotional tone (VADER sentiment) from position (Pro / Anti / Neutral stance)',
+        'Stratified manual validation on 180 samples (86.11% accuracy, 0.8493 Macro F1)',
+        'Interactive PyVis network visualizations and Before → Peak → After polarization timelines'
+      ],
+      techStack: ['Python', 'NetworkX', 'Louvain Modularity', 'VADER', 'Scikit-learn', 'TF-IDF', 'PyVis', 'Pandas', 'Matplotlib'],
+      githubUrl: 'https://github.com/manyaagarwal23/cjp-neet-protest-social-media-analysis',
+      repoName: 'manyaagarwal23/cjp-neet-protest-social-media-analysis',
+      repoDesc: 'Cross-platform analysis of echo chambers, stance polarization, and network communities on X and Reddit.',
+      demoUrl: null
+    },
+    'placement': {
+      id: 'placement',
+      title: 'Placement Management Platform',
+      subtitle: 'Turning messy campus placement spreadsheets into live funnel intelligence.',
+      category: 'FULL-STACK & SQL ANALYTICS',
+      featured: false,
+      metric: '10-Table 3NF + SQL',
+      role: 'Solo Build • 3NF PostgreSQL Schema, Express API & React Dashboard',
+      summary: 'A full-stack campus placement system that unifies student profiles, recruiting companies, job drives, applications, interview rounds, offers, and skill matching in one live analytics hub.',
+      problem: 'Placement cells usually run on scattered Excel files, making it impossible to quickly see which students are placement-ready or which roles are losing candidates mid-funnel.',
+      standout: 'Live SQL bottleneck detection automatically flags job roles whose interview-to-offer conversion drops below the platform average, paired with a transparent weighted Placement Readiness Score.',
+      architecture: 'Strictly normalized 10-table 3NF PostgreSQL 16 schema (foreign keys, CHECK constraints, indexes, and audit logging) connected through an Express.js REST API to a React + Vite + Recharts frontend.',
+      features: [
+        'Executive dashboard with 8 live KPIs and 7 interactive Recharts visualizations',
+        'Automated status pipeline (logging an interview or offer updates application status)',
+        'Transparent Placement Readiness Score, skill-gap matching %, and company conversion metrics',
+        'Full CRUD with backend pagination/filtering and automatic mutation audit logs'
+      ],
+      techStack: ['React', 'Vite', 'Tailwind CSS', 'Recharts', 'Node.js', 'Express.js', 'PostgreSQL', 'SQL', 'REST APIs'],
+      githubUrl: 'https://github.com/manyaagarwal23/placement-management-platform',
+      repoName: 'manyaagarwal23/placement-management-platform',
+      repoDesc: 'Full-stack campus placement & intelligence platform backed by a 10-table 3NF PostgreSQL schema.',
+      demoUrl: null
+    },
+    'linkpulse-api': {
+      id: 'linkpulse-api',
+      title: 'ShortLink & TeamOps API',
+      subtitle: 'Production-ready URL shortener, click telemetry, and real-time team collaboration.',
+      category: 'BACKEND & SYSTEM DESIGN',
+      featured: false,
+      metric: 'Rate Limits + Metrics',
+      role: 'Backend & Systems Engineering • APIs, RBAC, Migrations & Observability',
+      summary: 'A production-focused backend suite pairing a FastAPI URL shortener (with click analytics, background workers, and Prometheus telemetry) and a Node.js WebSocket team collaboration & RBAC service.',
+      problem: 'Basic CRUD tutorials fall over in production: they skip rate limiting, leak raw IPs in analytics, lack database migrations, or allow role-escalation bugs in team permissions.',
+      standout: 'Built with real production guardrails: 30/120 rpm rate limiters, SHA-256 IP hashing for privacy-safe click logs, Alembic migrations, structlog request tracing, Prometheus metrics, and WebSocket event-bus audit logs.',
+      architecture: 'Two complementary services: a FastAPI + SQLAlchemy + Alembic link service with background worker and Prometheus `/metrics`, plus a Node.js team RBAC API using explicit endpoint role checks and an EventEmitter-driven WebSocket activity feed.',
+      features: [
+        'FastAPI URL shortener with user-scoped link creation (30 rpm) and IP-throttled redirects (120 rpm)',
+        'Privacy-safe click tracking (SHA-256 hashed IPs, user-agent, referrer) + background worker',
+        'Strict RBAC team & invitation endpoints with WebSocket real-time activity feed and audit log',
+        'Docker Compose setup, Alembic DB migrations, structured JSON logging, and automated tests'
+      ],
+      techStack: ['Python', 'FastAPI', 'SQLAlchemy', 'Alembic', 'PostgreSQL', 'Node.js', 'WebSockets', 'Docker', 'Prometheus', 'Structlog'],
+      githubUrl: 'https://github.com/manyaagarwal23/CAW-Assignment',
+      repoName: 'FastAPI ShortLink & TeamOps Repository',
+      repoDesc: 'Production-oriented URL shortener & analytics API plus WebSocket team RBAC collaboration backend.',
       demoUrl: null
     },
     'university-assistant': {
       id: 'university-assistant',
-      title: 'University Assistant',
-      subtitle: 'Domain-Adapted LLM Fine-Tuning',
-      category: 'NLP / LLM FINE-TUNING',
+      title: 'University Assistant (Phi-2 LoRA)',
+      subtitle: 'Teaching a compact open-weight LLM campus rules without burning GPU budgets.',
+      category: 'NLP & LLM FINE-TUNING',
       featured: false,
-      metric: 'PEFT / LoRA Adapted',
-      summary: 'A domain-specific conversational assistant fine-tuned on university information to answer academic and administrative questions.',
-      problem: 'General-purpose large language models lack institutional context, frequently hallucinate administrative deadlines, and require cost-effective customization methods without full-parameter retraining.',
-      architecture: 'Engineered a parameter-efficient fine-tuning (PEFT) pipeline using Low-Rank Adaptation (LoRA) on Microsoft’s Phi-2 architecture, trained on a curated campus QA dataset, and systematically evaluated with BLEU and ROUGE scoring benchmarks.',
+      metric: '9x Accuracy Boost',
+      role: 'Solo ML Experiment • Dataset Curation, LoRA Fine-Tuning & Eval',
+      summary: 'A domain-adapted campus Q&A assistant built by fine-tuning Microsoft’s Phi-2 language model with LoRA/PEFT on 900 curated university academic and administrative questions.',
+      problem: 'General-purpose LLMs confidently invent fake course prerequisites and open-elective rules, while full-parameter fine-tuning is overkill for a focused campus assistant.',
+      standout: 'Jumped accuracy 9x over the base Phi-2 model (5% → 45%) and more than doubled ROUGE-1 (0.168 → 0.379) by tuning lightweight LoRA attention adapters on a single Colab GPU.',
+      architecture: 'Tokenized a custom 900-sample university Q&A dataset via Hugging Face Datasets, attached LoRA adapters (r=8, alpha=16 targeting q_proj and v_proj) on quantized Phi-2, trained for 3 epochs in fp16, and benchmarked against base Phi-2.',
       features: [
-        'Curated university-specific academic and administrative Q&A dataset',
-        'Parameter-efficient fine-tuning of Microsoft Phi-2 using LoRA adapters',
-        'Modular training and validation pipeline built with Hugging Face Transformers',
-        'Systematic performance evaluation using BLEU, ROUGE, and factual accuracy metrics',
-        'Interactive real-time CLI querying interface for campus consultations'
+        'Custom 900-sample university Q&A dataset covering electives, courses, and admin processes',
+        'Parameter-efficient LoRA fine-tuning (PEFT) on Microsoft Phi-2 using BitsAndBytes fp16',
+        'Head-to-head benchmark vs. base model on BLEU, ROUGE-1/2/L, and exact accuracy',
+        'Interactive CLI loop for real-time campus queries'
       ],
-      techStack: ['Python', 'Microsoft Phi-2', 'PEFT/LoRA', 'Hugging Face Transformers', 'PyTorch', 'Google Colab'],
+      techStack: ['Python', 'Microsoft Phi-2', 'PEFT / LoRA', 'PyTorch', 'Hugging Face Transformers', 'BitsAndBytes', 'Google Colab'],
       githubUrl: 'https://github.com/manyaagarwal23/university-assistant-llm-finetuning',
-      githubLabel: 'View University Assistant on GitHub',
       repoName: 'manyaagarwal23/university-assistant-llm-finetuning',
-      repoDesc: 'Domain-adapted conversational assistant fine-tuning Microsoft Phi-2 with PEFT/LoRA on university QA data.',
+      repoDesc: 'LoRA/PEFT fine-tuning of Microsoft Phi-2 on university Q&A data with BLEU/ROUGE benchmarks.',
       demoUrl: null
     },
-    'kpop-trends': {
-      id: 'kpop-trends',
-      title: 'K-Pop Trend Analysis',
-      subtitle: 'Chart & Fandom Intelligence',
-      category: 'DATA SCIENCE / ANALYTICS',
+    'smart-greenhouse': {
+      id: 'smart-greenhouse',
+      title: 'Smart Greenhouse + 3D Twin',
+      subtitle: 'Physical sensors, automated climate control, and a live 3D greenhouse in the browser.',
+      category: 'IOT & 3D VISUALIZATION',
       featured: false,
-      metric: 'Fandom Trajectory KPIs',
-      summary: 'A data-driven system that analyses daily Top 50 K-Pop chart data to uncover song retention, re-entry patterns, comeback momentum, and artist performance.',
-      problem: 'Music streaming data is noisy and heavily distorted by concentrated fandom streaming spikes. Conventional charts fail to isolate organic listener retention from initial comeback surges.',
-      architecture: 'Complete data science exploratory pipeline utilizing Pandas and NumPy for time-series aggregation, Scikit-learn for anomaly detection and clustering, and Streamlit for dynamic multi-dimensional chart exploration.',
+      metric: 'ESP32 + Three.js Twin',
+      role: 'Solo Hardware & Web Build • Firmware, Cloud Alerts & 3D UI',
+      summary: 'An ESP32-based greenhouse automation build that monitors soil moisture and ambient light, automatically toggles water pumps, fans, and grow lights, and pairs with an interactive Three.js 3D web dashboard.',
+      problem: 'Small greenhouses and indoor setups suffer when moisture drops or light fades while nobody is around to flip a switch.',
+      standout: 'Connects embedded C++ firmware (simulated in Wokwi with an OLED readout and RGB status LED) directly to ThingSpeak cloud telemetry, instant Telegram bot alerts, and a Three.js OrbitControls 3D dashboard.',
+      architecture: 'PlatformIO C++ firmware on ESP32 reading analog soil/LDR pins to actuate relays, SSD1306 OLED, and buzzer, pushing live metrics over HTTPS to ThingSpeak & Telegram while a custom Three.js frontend visualizes the environment in 3D.',
       features: [
-        'Formulated custom KPIs for comeback momentum, chart retention rate, rank recovery, and fandom intensity',
-        'Systematic data preprocessing, time-series alignment, and missing value interpolation',
-        'Granular song- and artist-level trajectory trend analysis over promotional cycles',
-        'Interactive Streamlit web dashboard for filtering historical rankings, dates, and artists'
+        'Automated pump, cooling fan, and grow-light actuation from soil moisture & LDR thresholds',
+        'Live SSD1306 OLED status display, RGB status indicator, and buzzer warnings',
+        'Instant HTTPS Telegram Bot alerts and ThingSpeak cloud logging',
+        'Interactive Three.js + OrbitControls 3D Smart Greenhouse web dashboard'
       ],
-      techStack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 'Streamlit'],
-      githubUrl: 'https://github.com/manyaagarwal23/kpop-trend-analysis',
-      githubLabel: 'View K-Pop Trend Analysis on GitHub',
-      repoName: 'manyaagarwal23/kpop-trend-analysis',
-      repoDesc: 'Data-driven analytics system evaluating daily Top 50 K-Pop charts, retention metrics, and fandom momentum.',
+      techStack: ['ESP32', 'C++', 'PlatformIO', 'Wokwi', 'Three.js', 'HTML5', 'CSS3', 'ThingSpeak', 'Telegram Bot API'],
+      githubUrl: 'https://github.com/manyaagarwal23/projects/tree/main/SmartGreenHouse',
+      repoName: 'manyaagarwal23/projects (SmartGreenHouse)',
+      repoDesc: 'ESP32 smart greenhouse firmware with Wokwi simulation, Telegram alerts, and a Three.js 3D dashboard.',
       demoUrl: null
     },
     'unimingle': {
       id: 'unimingle',
       title: 'Unimingle',
-      subtitle: 'Campus Social Networking App',
-      category: 'MOBILE APP / ANDROID',
+      subtitle: 'Find spontaneous campus plans, host meetups, and chat in real time.',
+      category: 'MOBILE APP & UI/UX',
       featured: false,
-      metric: 'Native Android & Firebase',
-      summary: 'A campus-based Android application that helps students discover activities, create events, connect with peers, and communicate.',
-      problem: 'College students often experience difficulty discovering spontaneous study groups, campus sports, and peer events outside rigid student clubs.',
-      architecture: 'Native Android application developed in Android Studio using Java, architected with Clean Architecture principles, Firebase Authentication for campus verification, and Firebase Realtime Database for synchronous chat.',
+      metric: 'Figma → Native Android',
+      role: 'Designer & Android Developer • Figma UI/UX, Java & Firebase',
+      summary: 'A campus social networking Android app built in Java and Firebase where students discover nearby hangouts, create campus events, browse peer profiles, and chat in real time.',
+      problem: 'College life outside formal clubs can feel surprisingly fragmented—putting together an impromptu study jam or badminton game shouldn’t mean spamming five WhatsApp groups.',
+      standout: 'Designed from scratch in Figma (wireframes, user flows, and card layouts) and shipped into a working native Android build backed by Firebase Authentication and Realtime Database.',
+      architecture: 'Native Android (Java) client in Android Studio structured around event discovery cards, student profile directories, Firebase Auth verification, and live Firebase Realtime Database messaging.',
       features: [
-        'Figma interactive prototypes, wireframes, and design system user flows',
-        'Dynamic activity cards for creating, browsing, and joining campus events',
-        'Student profile management and peer connection directory',
-        'Real-time peer and group messaging backed by Firebase Realtime Database'
+        'End-to-end UI/UX wireframes and interactive flows designed in Figma',
+        'Activity feed for creating, browsing, and joining student-led campus events',
+        'Student profile cards and peer connection directory',
+        'Real-time 1:1 and group messaging powered by Firebase Realtime Database'
       ],
-      techStack: ['Java', 'Android Studio', 'Firebase Auth', 'Firebase Realtime DB', 'Figma'],
+      techStack: ['Figma', 'UI/UX Design', 'Java', 'Android Studio', 'Firebase Auth', 'Firebase Realtime DB'],
       githubUrl: 'https://github.com/manyaagarwal23/UNIMINGLE',
-      githubLabel: 'View Unimingle on GitHub',
       repoName: 'manyaagarwal23/UNIMINGLE',
-      repoDesc: 'Campus-based Android social networking application for student activity discovery, events, and real-time chat.',
+      repoDesc: 'Native Android campus social networking app with Figma UI/UX, event discovery, and Firebase chat.',
       demoUrl: null
+    },
+    'portfolio': {
+      id: 'portfolio',
+      title: 'Interactive Story Portfolio',
+      subtitle: 'A day-to-night illustrated world built from scratch without heavy frameworks.',
+      category: 'UI/UX DESIGN & CREATIVE DEV',
+      featured: false,
+      metric: 'Zero-Framework Build',
+      role: 'Solo Designer & Engineer • Concept, Visual UX & Full Codebase',
+      summary: 'The website you’re exploring right now—blending a day/night illustrated village hero, a cursor-tracking 3D mascot, a 3D leather-bound work journal, and this interactive project city map.',
+      problem: 'Too many portfolios look like identical sterile templates that list bullet points instead of showing how a designer and engineer actually thinks about experience.',
+      standout: 'Zero frontend frameworks or animation libraries—crafted purely with vanilla CSS 3D perspective transforms, requestAnimationFrame cursor physics, 7 reactive mascot expressions, and a live Node.js server.',
+      architecture: 'Semantic HTML5 and custom CSS design tokens with Day/Night crossfades, modular vanilla JS engines for the mascot, open book, and pannable SVG city map, served by a lightweight Node.js HTTP & stats API.',
+      features: [
+        'Full-screen Day/Night village canvas with interactive location pins and frosted modals',
+        '3D cursor-following mascot that waves, thinks when idle, and reacts to hobby pills',
+        'Top-down desk & 3D open-book work journal with keyboard-navigable chapter tabs',
+        'Pannable, zoomable, domain-filterable project city map deployed live on Render'
+      ],
+      techStack: ['UI/UX Design', 'HTML5', 'CSS3', 'Vanilla JavaScript', 'Node.js', '3D Transforms', 'ARIA Accessibility', 'Render'],
+      githubUrl: 'https://github.com/manyaagarwal23/manya-agarwal-portfolio',
+      repoName: 'manyaagarwal23/manya-agarwal-portfolio',
+      repoDesc: 'Interactive zero-framework portfolio with day/night worlds, 3D mascot, open-book work journal, and project map.',
+      demoUrl: 'https://manya-agarwal-portfolio.onrender.com/'
     }
   };
 
+  // Ordered list of projects for Prev/Next modal browsing
+  const PROJECT_ORDER = [
+    'logiclens',
+    'skillora',
+    'campaigniq',
+    'watchmate',
+    'disaster-hub',
+    'personapath',
+    'cjp-discourse',
+    'placement',
+    'linkpulse-api',
+    'university-assistant',
+    'smart-greenhouse',
+    'unimingle',
+    'portfolio'
+  ];
+
   // =========================================================
-  // Modal DOM Elements & Logic
+  // Filter Bar & Modal DOM Elements & Logic
   // =========================================================
 
   let currentActiveProjectId = null;
   let lastFocusedTrigger = null;
+  let activeDomainFilter = 'all';
+
+  const filterBar = document.getElementById('mapFilterBar');
+  const filterPills = document.querySelectorAll('.map-filter-pill');
+  const mapHintText = document.getElementById('mapHintText');
+  const pinAnchors = document.querySelectorAll('.map-pin-anchor');
+
+  function getFilteredProjectIds() {
+    if (activeDomainFilter === 'all') return [...PROJECT_ORDER];
+    return PROJECT_ORDER.filter(id => {
+      const pin = document.querySelector(`.map-pin-anchor[data-project-id="${id}"]`);
+      if (!pin) return false;
+      const domains = (pin.getAttribute('data-domain') || '').split(/\s+/);
+      return domains.includes(activeDomainFilter);
+    });
+  }
+
+  function applyDomainFilter(filterKey, labelText) {
+    activeDomainFilter = filterKey;
+    let visibleCount = 0;
+
+    pinAnchors.forEach(pin => {
+      const domains = (pin.getAttribute('data-domain') || '').split(/\s+/);
+      const matches = filterKey === 'all' || domains.includes(filterKey);
+      pin.classList.toggle('is-dimmed', !matches);
+      if (matches) visibleCount++;
+    });
+
+    if (mapHintText) {
+      if (filterKey === 'all') {
+        mapHintText.textContent = `🧭 ${visibleCount} Interactive Projects • Click any pin to explore`;
+      } else {
+        mapHintText.textContent = `🧭 ${visibleCount} ${labelText} Projects • Click any highlighted pin`;
+      }
+    }
+  }
+
+  if (filterBar) {
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const key = pill.getAttribute('data-filter') || 'all';
+        filterPills.forEach(p => {
+          p.classList.remove('is-active');
+          p.setAttribute('aria-selected', 'false');
+        });
+        pill.classList.add('is-active');
+        pill.setAttribute('aria-selected', 'true');
+        applyDomainFilter(key, pill.textContent.trim());
+      });
+    });
+  }
 
   // Overview Popup Elements
   const overviewBackdrop = document.getElementById('projectOverviewBackdrop');
-  const overviewModal = document.getElementById('projectOverviewModal');
   const overviewCloseBtn = document.getElementById('overviewCloseBtn');
-  const overviewDismissBtn = document.getElementById('overviewDismissBtn');
   const overviewDetailsBtn = document.getElementById('overviewDetailsBtn');
   const overviewGithubBtn = document.getElementById('overviewGithubBtn');
   const overviewGithubLabel = document.getElementById('overviewGithubLabel');
   const overviewDemoBtn = document.getElementById('overviewDemoBtn');
+  const overviewTopDemoBtn = document.getElementById('overviewTopDemoBtn');
   const overviewCategory = document.getElementById('overviewCategory');
   const overviewFeaturedBadge = document.getElementById('overviewFeaturedBadge');
   const overviewMetric = document.getElementById('overviewMetric');
   const overviewTitle = document.getElementById('overviewTitle');
   const overviewSubtitle = document.getElementById('overviewSubtitle');
+  const overviewRole = document.getElementById('overviewRole');
   const overviewSummary = document.getElementById('overviewSummary');
   const overviewProblem = document.getElementById('overviewProblem');
+  const overviewStandoutBox = document.getElementById('overviewStandoutBox');
+  const overviewStandout = document.getElementById('overviewStandout');
   const overviewFeatures = document.getElementById('overviewFeatures');
   const overviewTags = document.getElementById('overviewTags');
+  const overviewPrevBtn = document.getElementById('overviewPrevBtn');
+  const overviewNextBtn = document.getElementById('overviewNextBtn');
+  const overviewPagerCount = document.getElementById('overviewPagerCount');
 
   // Full Detail Modal Elements
   const detailBackdrop = document.getElementById('projectDetailBackdrop');
-  const detailModal = document.getElementById('projectDetailModal');
   const detailCloseBtn = document.getElementById('detailCloseBtn');
   const detailDismissBtn = document.getElementById('detailDismissBtn');
   const detailCategory = document.getElementById('detailCategory');
   const detailFeaturedBadge = document.getElementById('detailFeaturedBadge');
+  const detailMetric = document.getElementById('detailMetric');
   const detailTitle = document.getElementById('detailTitle');
   const detailSubtitle = document.getElementById('detailSubtitle');
+  const detailRole = document.getElementById('detailRole');
+  const detailSummary = document.getElementById('detailSummary');
   const detailProblem = document.getElementById('detailProblem');
+  const detailStandoutBox = document.getElementById('detailStandoutBox');
+  const detailStandout = document.getElementById('detailStandout');
   const detailArchitecture = document.getElementById('detailArchitecture');
   const detailFeatures = document.getElementById('detailFeatures');
   const detailTechStack = document.getElementById('detailTechStack');
   const detailRepoName = document.getElementById('detailRepoName');
   const detailRepoDesc = document.getElementById('detailRepoDesc');
   const detailRepoLink = document.getElementById('detailRepoLink');
+  const detailDemoBtn = document.getElementById('detailDemoBtn');
+  const detailTopDemoBtn = document.getElementById('detailTopDemoBtn');
+  const detailPrevBtn = document.getElementById('detailPrevBtn');
+  const detailNextBtn = document.getElementById('detailNextBtn');
+  const detailPagerCount = document.getElementById('detailPagerCount');
+
+  function updatePagerUI(projectId, prevBtn, nextBtn, countEl) {
+    const list = getFilteredProjectIds();
+    const activeList = list.includes(projectId) ? list : PROJECT_ORDER;
+    const idx = activeList.indexOf(projectId);
+    if (countEl) {
+      countEl.textContent = `${idx + 1} / ${activeList.length}`;
+    }
+    if (prevBtn) prevBtn.disabled = activeList.length <= 1;
+    if (nextBtn) nextBtn.disabled = activeList.length <= 1;
+  }
+
+  function stepProject(delta, mode) {
+    if (!currentActiveProjectId) return;
+    const list = getFilteredProjectIds();
+    const activeList = list.includes(currentActiveProjectId) ? list : PROJECT_ORDER;
+    const idx = activeList.indexOf(currentActiveProjectId);
+    const nextIdx = (idx + delta + activeList.length) % activeList.length;
+    const nextId = activeList[nextIdx];
+    if (mode === 'detail') {
+      openProjectDetail(nextId);
+    } else {
+      openProjectOverview(nextId);
+    }
+  }
 
   function openProjectOverview(projectId) {
     const data = PROJECTS_DATA[projectId];
@@ -490,8 +735,27 @@
     if (overviewMetric) overviewMetric.textContent = data.metric;
     if (overviewTitle) overviewTitle.textContent = data.title;
     if (overviewSubtitle) overviewSubtitle.textContent = data.subtitle;
+
+    if (overviewRole) {
+      if (data.role) {
+        overviewRole.textContent = data.role;
+        overviewRole.style.display = 'block';
+      } else {
+        overviewRole.style.display = 'none';
+      }
+    }
+
     if (overviewSummary) overviewSummary.textContent = data.summary;
     if (overviewProblem) overviewProblem.textContent = data.problem;
+
+    if (overviewStandoutBox && overviewStandout) {
+      if (data.standout) {
+        overviewStandout.textContent = data.standout;
+        overviewStandoutBox.style.display = 'block';
+      } else {
+        overviewStandoutBox.style.display = 'none';
+      }
+    }
 
     // Implementation features bullets
     if (overviewFeatures) {
@@ -503,15 +767,22 @@
       });
     }
 
-    // Tech Tags
+    // Tech Tags (show top 6 + remainder badge)
     if (overviewTags) {
       overviewTags.innerHTML = '';
-      (data.techStack || []).slice(0, 6).forEach(tag => {
+      const stack = data.techStack || [];
+      stack.slice(0, 6).forEach(tag => {
         const span = document.createElement('span');
         span.className = 'modal-tag';
         span.textContent = tag;
         overviewTags.appendChild(span);
       });
+      if (stack.length > 6) {
+        const more = document.createElement('span');
+        more.className = 'modal-tag modal-tag-more';
+        more.textContent = `+${stack.length - 6} more`;
+        overviewTags.appendChild(more);
+      }
     }
 
     // GitHub Button
@@ -524,16 +795,19 @@
       overviewGithubLabel.textContent = data.githubUrl ? 'GitHub Repo' : 'GitHub Profile';
     }
 
-    // Demo Button (Only if valid URL)
-    if (overviewDemoBtn) {
+    // Deployed Live Demo Buttons (Top beside heading + Bottom action bar)
+    [overviewDemoBtn, overviewTopDemoBtn].forEach(btn => {
+      if (!btn) return;
       if (data.demoUrl) {
-        overviewDemoBtn.href = data.demoUrl;
-        overviewDemoBtn.style.display = 'inline-flex';
-        overviewDemoBtn.setAttribute('aria-label', `Launch live demo for ${data.title}`);
+        btn.href = data.demoUrl;
+        btn.style.display = 'inline-flex';
+        btn.setAttribute('aria-label', `Open live deployment for ${data.title}`);
       } else {
-        overviewDemoBtn.style.display = 'none';
+        btn.style.display = 'none';
       }
-    }
+    });
+
+    updatePagerUI(projectId, overviewPrevBtn, overviewNextBtn, overviewPagerCount);
 
     // Close detail modal if open
     if (detailBackdrop) {
@@ -565,9 +839,38 @@
     if (detailFeaturedBadge) {
       detailFeaturedBadge.style.display = data.featured ? 'inline-flex' : 'none';
     }
+    if (detailMetric) {
+      if (data.metric) {
+        detailMetric.textContent = data.metric;
+        detailMetric.style.display = 'inline-flex';
+      } else {
+        detailMetric.style.display = 'none';
+      }
+    }
     if (detailTitle) detailTitle.textContent = data.title;
     if (detailSubtitle) detailSubtitle.textContent = data.subtitle;
+
+    if (detailRole) {
+      if (data.role) {
+        detailRole.textContent = data.role;
+        detailRole.style.display = 'block';
+      } else {
+        detailRole.style.display = 'none';
+      }
+    }
+
+    if (detailSummary) detailSummary.textContent = data.summary;
     if (detailProblem) detailProblem.textContent = data.problem;
+
+    if (detailStandoutBox && detailStandout) {
+      if (data.standout) {
+        detailStandout.textContent = data.standout;
+        detailStandoutBox.style.display = 'block';
+      } else {
+        detailStandoutBox.style.display = 'none';
+      }
+    }
+
     if (detailArchitecture) detailArchitecture.textContent = data.architecture;
 
     // Detailed features grid
@@ -576,7 +879,14 @@
       (data.features || []).forEach(feat => {
         const li = document.createElement('li');
         li.className = 'detail-feature-item';
-        li.innerHTML = `<span class="feat-bullet">✦</span><span class="feat-text">${feat}</span>`;
+        const bullet = document.createElement('span');
+        bullet.className = 'feat-bullet';
+        bullet.textContent = '✦';
+        const text = document.createElement('span');
+        text.className = 'feat-text';
+        text.textContent = feat;
+        li.appendChild(bullet);
+        li.appendChild(text);
         detailFeatures.appendChild(li);
       });
     }
@@ -592,7 +902,7 @@
       });
     }
 
-    // Verified GitHub card
+    // Verified GitHub & Live Link card
     const targetRepoUrl = data.githubUrl || DEFAULT_GITHUB_PROFILE;
     if (detailRepoName) detailRepoName.textContent = data.repoName || 'manyaagarwal23 / repositories';
     if (detailRepoDesc) detailRepoDesc.textContent = data.repoDesc || 'Explore project repository on GitHub.';
@@ -600,6 +910,18 @@
       detailRepoLink.href = targetRepoUrl;
       detailRepoLink.setAttribute('aria-label', `View ${data.title} repository on GitHub`);
     }
+    [detailDemoBtn, detailTopDemoBtn].forEach(btn => {
+      if (!btn) return;
+      if (data.demoUrl) {
+        btn.href = data.demoUrl;
+        btn.style.display = 'inline-flex';
+        btn.setAttribute('aria-label', `Open live deployment for ${data.title}`);
+      } else {
+        btn.style.display = 'none';
+      }
+    });
+
+    updatePagerUI(projectId, detailPrevBtn, detailNextBtn, detailPagerCount);
 
     // Close overview popup
     if (overviewBackdrop) {
@@ -622,7 +944,6 @@
   }
 
   // Pin click listeners
-  const pinAnchors = document.querySelectorAll('.map-pin-anchor');
   pinAnchors.forEach(pin => {
     pin.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -648,7 +969,8 @@
 
   // Overview Action Listeners
   if (overviewCloseBtn) overviewCloseBtn.addEventListener('click', closeProjectOverview);
-  if (overviewDismissBtn) overviewDismissBtn.addEventListener('click', closeProjectOverview);
+  if (overviewPrevBtn) overviewPrevBtn.addEventListener('click', () => stepProject(-1, 'overview'));
+  if (overviewNextBtn) overviewNextBtn.addEventListener('click', () => stepProject(1, 'overview'));
   if (overviewDetailsBtn) {
     overviewDetailsBtn.addEventListener('click', () => {
       if (currentActiveProjectId) {
@@ -668,6 +990,8 @@
   // Detail Action Listeners
   if (detailCloseBtn) detailCloseBtn.addEventListener('click', closeProjectDetail);
   if (detailDismissBtn) detailDismissBtn.addEventListener('click', closeProjectDetail);
+  if (detailPrevBtn) detailPrevBtn.addEventListener('click', () => stepProject(-1, 'detail'));
+  if (detailNextBtn) detailNextBtn.addEventListener('click', () => stepProject(1, 'detail'));
 
   if (detailBackdrop) {
     detailBackdrop.addEventListener('click', (e) => {
@@ -677,14 +1001,20 @@
     });
   }
 
-  // Keyboard navigation: Escape key closes active modal
+  // Keyboard navigation: Escape closes active modal, Left/Right steps projects
   document.addEventListener('keydown', (e) => {
+    const detailOpen = detailBackdrop && detailBackdrop.classList.contains('is-open');
+    const overviewOpen = overviewBackdrop && overviewBackdrop.classList.contains('is-open');
+
     if (e.key === 'Escape') {
-      if (detailBackdrop && detailBackdrop.classList.contains('is-open')) {
-        closeProjectDetail();
-      } else if (overviewBackdrop && overviewBackdrop.classList.contains('is-open')) {
-        closeProjectOverview();
-      }
+      if (detailOpen) closeProjectDetail();
+      else if (overviewOpen) closeProjectOverview();
+    } else if (e.key === 'ArrowLeft') {
+      if (detailOpen) stepProject(-1, 'detail');
+      else if (overviewOpen) stepProject(-1, 'overview');
+    } else if (e.key === 'ArrowRight') {
+      if (detailOpen) stepProject(1, 'detail');
+      else if (overviewOpen) stepProject(1, 'overview');
     }
   });
 
@@ -807,16 +1137,16 @@
       icon: '🛡️',
       company: 'Bharat Electronics Limited (BEL)',
       role: 'Machine Learning Intern',
-      date: 'June 2025 – July 2025',
+      date: 'June 2025 – July 2025 (6–7 Weeks)',
       status: 'Completed',
-      narrative: 'Worked on a machine learning-based network intrusion and anomaly detection project using the UNSW-NB15 dataset. Explored network traffic data and supported the development of ML approaches for identifying potentially malicious network activity. I also contributed to designing UI screens for the BEL website.',
+      narrative: 'Completed a 2-month PS-II internship on "Machine Learning-Based Network Anomaly Detection" to strengthen automated fault detection and cybersecurity monitoring. Preprocessed the UNSW-NB15 dataset, performed feature selection, and compared Logistic Regression, Decision Tree, and Random Forest classifiers for anomaly detection and attack classification—alongside exposure to defense network systems, Linux, SNMP monitoring, and UI screens for the BEL website.',
       responsibilities: [
-        'Explored and prepared network traffic data for machine learning analysis.',
-        'Worked with the UNSW-NB15 dataset for network intrusion and anomaly detection.',
-        'Supported machine learning experimentation and analysis of network activity.',
-        'Designed UI screens for the BEL website.'
+        'Performed data preprocessing, feature analysis, and feature selection on the UNSW-NB15 network traffic dataset using Pandas, NumPy, and Matplotlib in Google Colab.',
+        'Applied and evaluated Logistic Regression, Decision Tree, and Random Forest models in Scikit-learn to detect anomalies and classify intrusion attacks.',
+        'Gained hands-on exposure to defense communication setups, Linux commands, and SNMP network monitoring systems.',
+        'Presented weekly review updates, prepared technical project documentation, and designed UI screens for the BEL website.'
       ],
-      skills: ['Machine Learning', 'Data Analysis', 'Network Security Fundamentals', 'Dataset Exploration', 'UI Design'],
+      skills: ['Python', 'Scikit-learn', 'Pandas & NumPy', 'Matplotlib', 'Google Colab', 'UNSW-NB15', 'Random Forest', 'Decision Trees', 'Logistic Regression', 'SNMP & Linux', 'Network Security', 'UI Design'],
       takeaway: 'Working on a real-world problem showed me how data, technology, and thoughtful interfaces can come together to solve practical challenges.'
     },
     {
@@ -824,18 +1154,18 @@
       badge: 'CHAPTER 02 / JUNE 2026 – SEPTEMBER 2026',
       icon: '📊',
       company: 'Unified Mentor',
-      role: 'Data Analyst Intern',
+      role: 'Data Analyst Intern (Project-Based)',
       date: 'June 2026 – September 2026',
       status: 'Completed',
-      narrative: 'Participated in a structured Data Analyst internship and fellowship focused on practical, project-based learning. The program involved working on analytics projects using data tools to explore datasets, extract insights, and communicate findings.',
+      narrative: 'A casual, project-based data analytics internship focused on learning through hands-on practice. My main guided project was analyzing a K-Pop music chart dataset—practicing how to clean CSV data, explore ranking and comeback patterns, and summarize what I found in simple charts.',
       responsibilities: [
-        'Worked on assigned data analytics projects as part of the internship.',
-        'Focused on data exploration, analysis, and extracting useful insights.',
-        'Developed practical familiarity with SQL, Python, Excel, and Power BI through project-based work, reflecting the tools actually used in each project.',
-        'Organized findings and worked toward presenting data-driven results clearly.'
+        'Cleaned and explored a K-Pop chart dataset in Jupyter Notebook using Python and Pandas.',
+        'Calculated straightforward trend metrics around rank movement, comeback comparisons, and chart retention.',
+        'Created basic Matplotlib visualizations and a small Streamlit dashboard to display the findings.',
+        'Practiced general analytics fundamentals across Python, SQL, Excel, and Power BI basics.'
       ],
-      skills: ['Data Analytics', 'Data Cleaning', 'SQL', 'Python', 'Excel', 'Power BI'],
-      takeaway: 'Data becomes valuable when you can turn it into a clear insight and explain why it matters.'
+      skills: ['Python', 'Pandas', 'Matplotlib', 'Streamlit', 'Data Cleaning', 'SQL & Excel Basics'],
+      takeaway: 'Even simple metrics and clean charts can make a noisy spreadsheet much easier to understand.'
     },
     {
       index: 2,
@@ -864,12 +1194,106 @@
   const bookTabs = document.querySelectorAll('.book-tab');
   const bookSpreads = document.querySelectorAll('.book-spread');
   const openBookEl = document.getElementById('openBook');
+  const bookFlipOverlay = document.getElementById('bookFlipOverlay');
 
   let currentChapter = 0;
   const totalChapters = bookSpreads.length;
+  let bookFlipTimer = null;
 
-  function setChapter(index, direction = 'next') {
+  function sanitizeFlipClone(pageEl) {
+    const clone = pageEl.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+    clone.querySelectorAll('button, a').forEach(el => el.setAttribute('tabindex', '-1'));
+    return clone;
+  }
+
+  function clearBookFlipOverlay() {
+    if (bookFlipTimer) {
+      clearTimeout(bookFlipTimer);
+      bookFlipTimer = null;
+    }
+    if (bookFlipOverlay) {
+      bookFlipOverlay.classList.remove('is-flipping');
+      bookFlipOverlay.innerHTML = '';
+    }
+  }
+
+  function runBookPageFlip(fromIndex, toIndex, direction) {
+    if (!bookFlipOverlay || window.innerWidth <= 860) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const oldSpread = bookSpreads[fromIndex];
+    const newSpread = bookSpreads[toIndex];
+    if (!oldSpread || !newSpread) return;
+
+    const oldLeft = oldSpread.querySelector('.page-left');
+    const oldRight = oldSpread.querySelector('.page-right');
+    const newLeft = newSpread.querySelector('.page-left');
+    const newRight = newSpread.querySelector('.page-right');
+    if (!oldLeft || !oldRight || !newLeft || !newRight) return;
+
+    clearBookFlipOverlay();
+
+    const underlay = document.createElement('div');
+    const castShadow = document.createElement('div');
+    const sheet = document.createElement('div');
+    const frontFace = document.createElement('div');
+    const backFace = document.createElement('div');
+
+    if (direction === 'next') {
+      // Turning forward: old left waits underneath, old right flips over to become new left, new right is revealed underneath
+      underlay.className = 'flip-underlay-half is-left';
+      underlay.appendChild(sanitizeFlipClone(oldLeft));
+
+      castShadow.className = 'flip-cast-shadow on-left';
+
+      sheet.className = 'flip-sheet flip-next';
+      frontFace.className = 'flip-face flip-face-front is-right';
+      frontFace.appendChild(sanitizeFlipClone(oldRight));
+      backFace.className = 'flip-face flip-face-back is-left';
+      backFace.appendChild(sanitizeFlipClone(newLeft));
+    } else {
+      // Turning backward: old right waits underneath, old left flips back to reveal new left underneath and land as new right
+      underlay.className = 'flip-underlay-half is-right';
+      underlay.appendChild(sanitizeFlipClone(oldRight));
+
+      castShadow.className = 'flip-cast-shadow on-right';
+
+      sheet.className = 'flip-sheet flip-prev';
+      frontFace.className = 'flip-face flip-face-front is-left';
+      frontFace.appendChild(sanitizeFlipClone(oldLeft));
+      backFace.className = 'flip-face flip-face-back is-right';
+      backFace.appendChild(sanitizeFlipClone(newRight));
+    }
+
+    sheet.appendChild(frontFace);
+    sheet.appendChild(backFace);
+    bookFlipOverlay.appendChild(underlay);
+    bookFlipOverlay.appendChild(castShadow);
+    bookFlipOverlay.appendChild(sheet);
+
+    // Force reflow so CSS 3D flip animation plays cleanly on every click
+    void bookFlipOverlay.offsetWidth;
+    bookFlipOverlay.classList.add('is-flipping');
+
+    bookFlipTimer = setTimeout(() => {
+      clearBookFlipOverlay();
+    }, 690);
+  }
+
+  function setChapter(index, direction, animate = true) {
     if (index < 0 || index >= totalChapters) return;
+
+    const prevIndex = currentChapter;
+    const shouldFlip = animate && prevIndex !== index;
+    const turnDir = direction || (index > prevIndex ? 'next' : 'prev');
+
+    if (shouldFlip) {
+      runBookPageFlip(prevIndex, index, turnDir);
+    } else {
+      clearBookFlipOverlay();
+    }
 
     bookSpreads.forEach((spread, i) => {
       if (i === index) {
@@ -907,8 +1331,8 @@
     }
   }
 
-  // Initialize button state
-  setChapter(0);
+  // Initialize button state (without initial flip)
+  setChapter(0, 'next', false);
 
   // Button clicks
   if (bookPrevBtn) {
